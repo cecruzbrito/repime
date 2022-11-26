@@ -5,7 +5,7 @@ class ConnectionDataBase {
       _SettingsDataBase.host, _SettingsDataBase.post, _SettingsDataBase.databaseName,
       useSSL: true, username: _SettingsDataBase.userName, password: _SettingsDataBase.password);
 
-  Future<List<Map<String, Map<String, dynamic>>>> makeSelection(QueryDataBase query) async {
+  Future<List<Map<String, Map<String, dynamic>>>> make(QueryDataBase query) async {
     await _connection.open();
     var result = await _connection.mappedResultsQuery(query.commandSQL, substitutionValues: query.arguments);
     await _connection.close();

@@ -9,13 +9,13 @@ class UniversidadeDB extends Universidade {
   factory UniversidadeDB.fromJson(j) => UniversidadeDB(
       id: j['universidade']['id'], idCidade: j['universidade']['id_cidade'], nome: j['universidade']['nome']);
 
-  Map<String, Map<String, String>> toJson() => {
-        'universidade': {'id': '$id', 'id_cidade': '$idCidade', 'nome': nome}
+  toJson() => {
+        'universidade': {'id': id, 'id_cidade': idCidade, 'nome': nome}
       };
 
   static Future<List<UniversidadeDB>> getUniversidades(Cidade c) async {
     var universidades = <UniversidadeDB>[];
-    var result = await ConnectionDataBase().makeSelection(QueryDataBase(
+    var result = await ConnectionDataBase().make(QueryDataBase(
         commandSQL: "SELECT * FROM universidade WHERE id_cidade = @city", arguments: {'city': c.id}));
     for (var r in result) {
       universidades.add(UniversidadeDB.fromJson(r));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:repime/app/blocs/cidade/cidade.dart';
+import 'package:repime/app/blocs/cidade/db/cidade_db.dart';
 
 import '../../blocs/universidade/db/universidade_db.dart';
 
@@ -14,12 +15,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    a();
-  }
-
-  a() async {
-    var cidade = Cidade(id: 1, nome: 'nome', uf: 'uf', pais: 'pais');
-    cidade.adicionarList = await UniversidadeDB.getUniversidades(cidade);
   }
 
   @override
