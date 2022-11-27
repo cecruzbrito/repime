@@ -9,4 +9,7 @@ class Cidade {
   var universidades = <Universidade>[];
 
   set adicionarList(List<Universidade> value) => universidades = value;
+
+  @override
+  String toString() => nome;
 }

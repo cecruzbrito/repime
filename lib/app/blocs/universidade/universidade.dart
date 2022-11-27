@@ -3,4 +3,7 @@ class Universidade {
   String nome;
 
   Universidade({required this.id, required this.idCidade, required this.nome});
+
+  @override
+  String toString() => nome;
 }

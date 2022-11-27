@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:repime/app/blocs/cidade/cidade.dart';
-import 'package:repime/app/blocs/cidade/db/cidade_db.dart';
-import 'package:repime/app/blocs/locatario/db/locatario_db.dart';
-import 'package:repime/app/blocs/locatario/locatario.dart';
-import 'package:repime/app/blocs/universidade/universidade.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../blocs/universidade/db/universidade_db.dart';
+import 'ctr_first_page/ctr_first_page.dart';
+import 'widgets/selecione_cidade_universidade_.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -15,13 +12,23 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
+  final CtrFirstPage ctr = CtrFirstPage();
   @override
   void initState() {
     super.initState();
+    ctr.makeGetCidades();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(body: Observer(builder: (context) {
+      return ctr.loading
+          ? Container()
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [SelecioneCidadeUniversidade(ctrFirstPage: ctr)],
+            );
+    }));
   }
 }
