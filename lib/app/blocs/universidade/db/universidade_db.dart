@@ -6,13 +6,6 @@ import '../../connection_database/connection_database.dart';
 class UniversidadeDB extends Universidade {
   UniversidadeDB({required super.id, required super.idCidade, required super.nome});
 
-  factory UniversidadeDB.fromJson(j) => UniversidadeDB(
-      id: j['universidade']['id'], idCidade: j['universidade']['id_cidade'], nome: j['universidade']['nome']);
-
-  toJson() => {
-        'universidade': {'id': id, 'id_cidade': idCidade, 'nome': nome}
-      };
-
   static Future<List<UniversidadeDB>> getUniversidades(Cidade c) async {
     var universidades = <UniversidadeDB>[];
     var result = await ConnectionDataBase().make(QueryDataBase(
@@ -22,4 +15,14 @@ class UniversidadeDB extends Universidade {
     }
     return universidades;
   }
+
+  factory UniversidadeDB.fromJson(j) => UniversidadeDB(
+      id: j['universidade']['id'], idCidade: j['universidade']['id_cidade'], nome: j['universidade']['nome']);
+
+  toJson() => {
+        'universidade': {'id': id, 'id_cidade': idCidade, 'nome': nome}
+      };
+
+  factory UniversidadeDB.toDB(Universidade universidade) =>
+      UniversidadeDB(id: universidade.id, idCidade: universidade.idCidade, nome: universidade.nome);
 }

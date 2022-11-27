@@ -7,6 +7,16 @@ import '../../universidade/universidade.dart';
 class CidadeDB extends Cidade {
   CidadeDB({required super.id, required super.nome, required super.uf, required super.pais});
 
+  static Future<List<CidadeDB>> getCidadesFromDataBase() async {
+    var cidades = <CidadeDB>[];
+    var result = await ConnectionDataBase().make(QueryDataBase(commandSQL: "SELECT * FROM cidade"));
+    for (var r in result) {
+      cidades.add(CidadeDB.fromJson(r));
+    }
+    return cidades;
+  }
+
+  // Funções de conversão de tipso
   factory CidadeDB.fromJson(j) {
     var city = CidadeDB(
         id: j['cidade']['id'], nome: j['cidade']['nome'], pais: j['cidade']['pais'], uf: j['cidade']['uf']);
@@ -32,18 +42,9 @@ class CidadeDB extends Cidade {
     return json;
   }
 
-  static Future<List<CidadeDB>> getCidadesFromDataBase() async {
-    var cidades = <CidadeDB>[];
-    var result = await ConnectionDataBase().make(QueryDataBase(commandSQL: "SELECT * FROM cidade"));
-    for (var r in result) {
-      cidades.add(CidadeDB.fromJson(r));
-    }
-    return cidades;
-  }
-
-  static CidadeDB toDB(Cidade c) {
-    var db = CidadeDB(id: c.id, nome: c.nome, uf: c.uf, pais: c.pais);
-    db.adicionarList = c.universidades;
+  factory CidadeDB.toDB(Cidade cidade) {
+    var db = CidadeDB(id: cidade.id, nome: cidade.nome, uf: cidade.uf, pais: cidade.pais);
+    db.adicionarList = cidade.universidades;
     return db;
   }
 }

@@ -3,5 +3,5 @@ import 'package:repime/config/routes_app.dart';
 
 class AppModule extends Module {
   @override
-  List<ModularRoute> get routes => [RouteApp.home.childRoute];
+  List<ModularRoute> get routes => [RouteApp.firstPage.childRoute];
 }

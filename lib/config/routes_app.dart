@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:repime/app/pages/home/home.dart';
+import 'package:repime/app/pages/first_page/first_page.dart';
 
 class RouteApp {
   String name;
@@ -10,5 +10,5 @@ class RouteApp {
 
   ChildRoute get childRoute => ChildRoute(name, child: (context, args) => route);
 
-  static RouteApp home = RouteApp(name: '/', route: const Home());
+  static RouteApp firstPage = RouteApp(name: '/', route: const FirstPage());
 }
