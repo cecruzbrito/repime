@@ -5,6 +5,7 @@ class SettingsFieldApp {
   final String? labelText, hintText;
   void Function()? onTap;
   void Function(String)? onChange;
+  String? Function(String?)? validator;
 
-  SettingsFieldApp({this.hintText, this.labelText, this.onChange, this.onTap, this.ctr});
+  SettingsFieldApp({this.hintText, this.labelText, this.onChange, this.onTap, this.ctr, this.validator});
 }

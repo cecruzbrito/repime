@@ -19,57 +19,60 @@ class DropDrownApp<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
 
-    final _ctrDropDownApp = CtrDropDownApp(isEnabled: initiateEnable, itens: itens);
+    final ctrDropDownApp = CtrDropDownApp(isEnabled: initiateEnable, itens: itens);
 
     var auxSettings = SettingsFieldApp(
         ctr: settings.ctr,
+        validator: settings.validator,
         hintText: settings.hintText,
         labelText: settings.hintText,
-        onChange: settings.onChange,
+        onChange: ctrDropDownApp.onChange,
         onTap: () {
           if (settings.onTap != null) settings.onTap!();
-          _ctrDropDownApp.onTapField();
+          ctrDropDownApp.onTapField();
         });
 
     return Observer(builder: (_) {
       return Column(
         children: [
           FieldApp(settingsFieldApp: auxSettings),
-          if (!_ctrDropDownApp.isEnabled)
+          if (!ctrDropDownApp.isEnabled)
             Container()
           else
             Container(
-              constraints: BoxConstraints(maxHeight: _size.height * .15, minHeight: 0, minWidth: 0),
+              constraints: BoxConstraints(maxHeight: size.height * .15, minHeight: 0, minWidth: 0),
               decoration: BoxDecoration(
                   color: Colors.grey[100],
                   borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(_size.width * .03),
-                      bottomRight: Radius.circular(_size.width * .03))),
-              padding: EdgeInsets.only(top: _size.height * .015),
+                      bottomLeft: Radius.circular(size.width * .03),
+                      bottomRight: Radius.circular(size.width * .03))),
+              padding: EdgeInsets.only(top: size.height * .015),
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    for (var item in _ctrDropDownApp.itens)
-                      GestureDetector(
-                        onTap: () => _ctrDropDownApp.onTapItem(onTapCard, item),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: _size.width * .05),
-                          child: Column(
-                            children: [
-                              Text(
-                                '$item',
-                                textAlign: TextAlign.center,
-                              ),
-                              Divider()
-                            ],
+                child: Observer(builder: (_) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      for (var item in ctrDropDownApp.realItens)
+                        GestureDetector(
+                          onTap: () => ctrDropDownApp.onTapItem(onTapCard, item),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: size.width * .05),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '$item',
+                                  textAlign: TextAlign.center,
+                                ),
+                                const Divider()
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                  ],
-                ),
+                        )
+                    ],
+                  );
+                }),
               ),
             )
         ],

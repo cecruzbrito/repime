@@ -13,29 +13,39 @@ abstract class _CtrDropDownAppBase<T> with Store {
   @observable
   var itensFiltered = <T>[].asObservable();
 
+  @computed
+  ObservableList<T> get realItens =>
+      itensFiltered.isEmpty && !_isHaveStringSearch ? itens.asObservable() : itensFiltered;
+
   @observable
   bool isEnabled;
 
   @action
-  void _setEnable({bool? value}) {
-    value != null ? isEnabled = value : isEnabled = !isEnabled;
-    print('isenable => $isEnabled');
-  }
+  void _setEnable({bool? value}) => value != null ? isEnabled = value : isEnabled = !isEnabled;
 
   @action
-  void onTapItem<T>(void Function(T item) onTapCard, T item) {
+  void onTapItem(void Function(T item) onTapCard, T item) {
     onTapCard(item);
     _setEnable();
   }
 
   @action
-  onTapField() => _setEnable(value: true);
+  void onTapField() {
+    _setEnable(value: true);
+  }
+
+  @observable
+  bool _isHaveStringSearch = false;
 
   @action
-  onChange(String value) {
+  void _setHaveStringSearch(bool value) => _isHaveStringSearch = value;
+
+  @action
+  void onChange(String value) {
+    _setHaveStringSearch(value.isNotEmpty);
     itensFiltered.clear();
     var auxValue = _filterString(value);
-    for (var i in itensFiltered) {
+    for (var i in itens) {
       var eAux = _filterString('$i');
       if (eAux!.contains(auxValue!)) itensFiltered.add(i);
     }

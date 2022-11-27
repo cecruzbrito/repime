@@ -17,11 +17,12 @@ class FieldApp extends StatelessWidget {
     var _size = MediaQuery.of(context).size;
     var fontSize = _size.height * .02;
 
-    return TextField(
+    return TextFormField(
       controller: settingsFieldApp.ctr,
       onTap: settingsFieldApp.onTap,
       onChanged: settingsFieldApp.onChange,
       cursorColor: _colorEnable,
+      validator: settingsFieldApp.validator,
       style: TextStyle(fontSize: fontSize, color: _colorEnable),
       decoration: InputDecoration(
           labelText: settingsFieldApp.labelText,

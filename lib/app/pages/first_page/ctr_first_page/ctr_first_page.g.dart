@@ -16,6 +16,13 @@ mixin _$CtrFirstPage on _CtrFirstPageBase, Store {
           Computed<bool>(() => super.isShowUniversidadeField,
               name: '_CtrFirstPageBase.isShowUniversidadeField'))
       .value;
+  Computed<bool>? _$isShowButtonContinueComputed;
+
+  @override
+  bool get isShowButtonContinue => (_$isShowButtonContinueComputed ??=
+          Computed<bool>(() => super.isShowButtonContinue,
+              name: '_CtrFirstPageBase.isShowButtonContinue'))
+      .value;
 
   late final _$loadingAtom =
       Atom(name: '_CtrFirstPageBase.loading', context: context);
@@ -98,6 +105,22 @@ mixin _$CtrFirstPage on _CtrFirstPageBase, Store {
     });
   }
 
+  late final _$_cidadeSelecionadaAtom =
+      Atom(name: '_CtrFirstPageBase._cidadeSelecionada', context: context);
+
+  @override
+  Cidade? get _cidadeSelecionada {
+    _$_cidadeSelecionadaAtom.reportRead();
+    return super._cidadeSelecionada;
+  }
+
+  @override
+  set _cidadeSelecionada(Cidade? value) {
+    _$_cidadeSelecionadaAtom.reportWrite(value, super._cidadeSelecionada, () {
+      super._cidadeSelecionada = value;
+    });
+  }
+
   late final _$ctrTextUniversidadeAtom =
       Atom(name: '_CtrFirstPageBase.ctrTextUniversidade', context: context);
 
@@ -111,6 +134,39 @@ mixin _$CtrFirstPage on _CtrFirstPageBase, Store {
   set ctrTextUniversidade(TextEditingController value) {
     _$ctrTextUniversidadeAtom.reportWrite(value, super.ctrTextUniversidade, () {
       super.ctrTextUniversidade = value;
+    });
+  }
+
+  late final _$_universidadeSelecionadaAtom = Atom(
+      name: '_CtrFirstPageBase._universidadeSelecionada', context: context);
+
+  @override
+  Universidade? get _universidadeSelecionada {
+    _$_universidadeSelecionadaAtom.reportRead();
+    return super._universidadeSelecionada;
+  }
+
+  @override
+  set _universidadeSelecionada(Universidade? value) {
+    _$_universidadeSelecionadaAtom
+        .reportWrite(value, super._universidadeSelecionada, () {
+      super._universidadeSelecionada = value;
+    });
+  }
+
+  late final _$formFieldAtom =
+      Atom(name: '_CtrFirstPageBase.formField', context: context);
+
+  @override
+  GlobalKey<FormState> get formField {
+    _$formFieldAtom.reportRead();
+    return super.formField;
+  }
+
+  @override
+  set formField(GlobalKey<FormState> value) {
+    _$formFieldAtom.reportWrite(value, super.formField, () {
+      super.formField = value;
     });
   }
 
@@ -157,6 +213,17 @@ mixin _$CtrFirstPage on _CtrFirstPageBase, Store {
   }
 
   @override
+  void _setCidadeSelecionada(Cidade? value) {
+    final _$actionInfo = _$_CtrFirstPageBaseActionController.startAction(
+        name: '_CtrFirstPageBase._setCidadeSelecionada');
+    try {
+      return super._setCidadeSelecionada(value);
+    } finally {
+      _$_CtrFirstPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void onTapFieldCidade() {
     final _$actionInfo = _$_CtrFirstPageBaseActionController.startAction(
         name: '_CtrFirstPageBase.onTapFieldCidade');
@@ -179,11 +246,55 @@ mixin _$CtrFirstPage on _CtrFirstPageBase, Store {
   }
 
   @override
+  void _setUniversidadeSelecionada(Universidade? value) {
+    final _$actionInfo = _$_CtrFirstPageBaseActionController.startAction(
+        name: '_CtrFirstPageBase._setUniversidadeSelecionada');
+    try {
+      return super._setUniversidadeSelecionada(value);
+    } finally {
+      _$_CtrFirstPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void onTapCardUniversidade(Universidade item) {
     final _$actionInfo = _$_CtrFirstPageBaseActionController.startAction(
         name: '_CtrFirstPageBase.onTapCardUniversidade');
     try {
       return super.onTapCardUniversidade(item);
+    } finally {
+      _$_CtrFirstPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatorCidade(String? value) {
+    final _$actionInfo = _$_CtrFirstPageBaseActionController.startAction(
+        name: '_CtrFirstPageBase.validatorCidade');
+    try {
+      return super.validatorCidade(value);
+    } finally {
+      _$_CtrFirstPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatorUniversidade(String? value) {
+    final _$actionInfo = _$_CtrFirstPageBaseActionController.startAction(
+        name: '_CtrFirstPageBase.validatorUniversidade');
+    try {
+      return super.validatorUniversidade(value);
+    } finally {
+      _$_CtrFirstPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void onTapContinue() {
+    final _$actionInfo = _$_CtrFirstPageBaseActionController.startAction(
+        name: '_CtrFirstPageBase.onTapContinue');
+    try {
+      return super.onTapContinue();
     } finally {
       _$_CtrFirstPageBaseActionController.endAction(_$actionInfo);
     }
@@ -197,7 +308,9 @@ cidades: ${cidades},
 universidades: ${universidades},
 ctrTextCidade: ${ctrTextCidade},
 ctrTextUniversidade: ${ctrTextUniversidade},
-isShowUniversidadeField: ${isShowUniversidadeField}
+formField: ${formField},
+isShowUniversidadeField: ${isShowUniversidadeField},
+isShowButtonContinue: ${isShowButtonContinue}
     ''';
   }
 }

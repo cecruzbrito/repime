@@ -6,11 +6,11 @@ import 'package:repime/app/blocs/util/cache_manager/cache_utility.dart';
 class LocatarioDB extends Locatario {
   LocatarioDB({required super.cidade, required super.universidade});
 
-  final String _fileNameCache = 'cache_locatario';
+  static const String _fileNameCache = 'cache_locatario';
 
   Future<void> setCache() async => await CacheUtility.setCache(cache: toJson(), pathName: _fileNameCache);
 
-  Future<LocatarioDB?> getCache() async {
+  static Future<LocatarioDB?> getCache() async {
     var cache = await CacheUtility.getCache(_fileNameCache);
     if (cache == null) return cache;
     return LocatarioDB.fromJson(cache);

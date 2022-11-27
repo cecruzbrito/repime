@@ -12,15 +12,18 @@ class SelecioneCidadeUniversidade extends StatelessWidget {
   final CtrFirstPage ctrFirstPage;
   @override
   Widget build(BuildContext context) {
-    var _size = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: _size.width * .05),
+    var size = MediaQuery.of(context).size;
+    return Form(
+      key: ctrFirstPage.formField,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Observer(builder: (_) {
             return DropDrownApp<Cidade>(
                 itens: ctrFirstPage.cidades,
                 settings: SettingsFieldApp(
+                    validator: ctrFirstPage.validatorCidade,
                     labelText: 'Cidade',
                     onTap: ctrFirstPage.onTapFieldCidade,
                     ctr: ctrFirstPage.ctrTextCidade,
@@ -28,7 +31,7 @@ class SelecioneCidadeUniversidade extends StatelessWidget {
                 onTapCard: ctrFirstPage.onTapCardDropDownCidade,
                 initiateEnable: false);
           }),
-          SizedBox(height: _size.height * .02),
+          SizedBox(height: size.height * .02),
           Observer(builder: (_) {
             if (!ctrFirstPage.isShowUniversidadeField) {
               return Container();
@@ -36,6 +39,7 @@ class SelecioneCidadeUniversidade extends StatelessWidget {
             return DropDrownApp<Universidade>(
                 itens: ctrFirstPage.universidades,
                 settings: SettingsFieldApp(
+                    validator: ctrFirstPage.validatorUniversidade,
                     labelText: 'Universidade',
                     ctr: ctrFirstPage.ctrTextUniversidade,
                     hintText: 'Selecione a universidade que estuda'),

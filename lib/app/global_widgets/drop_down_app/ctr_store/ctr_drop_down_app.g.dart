@@ -9,6 +9,14 @@ part of 'ctr_drop_down_app.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$CtrDropDownApp<T> on _CtrDropDownAppBase<T>, Store {
+  Computed<ObservableList<T>>? _$realItensComputed;
+
+  @override
+  ObservableList<T> get realItens => (_$realItensComputed ??=
+          Computed<ObservableList<T>>(() => super.realItens,
+              name: '_CtrDropDownAppBase.realItens'))
+      .value;
+
   late final _$itensAtom =
       Atom(name: '_CtrDropDownAppBase.itens', context: context);
 
@@ -57,6 +65,22 @@ mixin _$CtrDropDownApp<T> on _CtrDropDownAppBase<T>, Store {
     });
   }
 
+  late final _$_isHaveStringSearchAtom =
+      Atom(name: '_CtrDropDownAppBase._isHaveStringSearch', context: context);
+
+  @override
+  bool get _isHaveStringSearch {
+    _$_isHaveStringSearchAtom.reportRead();
+    return super._isHaveStringSearch;
+  }
+
+  @override
+  set _isHaveStringSearch(bool value) {
+    _$_isHaveStringSearchAtom.reportWrite(value, super._isHaveStringSearch, () {
+      super._isHaveStringSearch = value;
+    });
+  }
+
   late final _$_CtrDropDownAppBaseActionController =
       ActionController(name: '_CtrDropDownAppBase', context: context);
 
@@ -72,18 +96,18 @@ mixin _$CtrDropDownApp<T> on _CtrDropDownAppBase<T>, Store {
   }
 
   @override
-  void onTapItem<T>(void Function(T) onTapCard, T item) {
+  void onTapItem(void Function(T) onTapCard, T item) {
     final _$actionInfo = _$_CtrDropDownAppBaseActionController.startAction(
-        name: '_CtrDropDownAppBase.onTapItem<T>');
+        name: '_CtrDropDownAppBase.onTapItem');
     try {
-      return super.onTapItem<T>(onTapCard, item);
+      return super.onTapItem(onTapCard, item);
     } finally {
       _$_CtrDropDownAppBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic onTapField() {
+  void onTapField() {
     final _$actionInfo = _$_CtrDropDownAppBaseActionController.startAction(
         name: '_CtrDropDownAppBase.onTapField');
     try {
@@ -94,7 +118,18 @@ mixin _$CtrDropDownApp<T> on _CtrDropDownAppBase<T>, Store {
   }
 
   @override
-  dynamic onChange(String value) {
+  void _setHaveStringSearch(bool value) {
+    final _$actionInfo = _$_CtrDropDownAppBaseActionController.startAction(
+        name: '_CtrDropDownAppBase._setHaveStringSearch');
+    try {
+      return super._setHaveStringSearch(value);
+    } finally {
+      _$_CtrDropDownAppBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void onChange(String value) {
     final _$actionInfo = _$_CtrDropDownAppBaseActionController.startAction(
         name: '_CtrDropDownAppBase.onChange');
     try {
@@ -109,7 +144,8 @@ mixin _$CtrDropDownApp<T> on _CtrDropDownAppBase<T>, Store {
     return '''
 itens: ${itens},
 itensFiltered: ${itensFiltered},
-isEnabled: ${isEnabled}
+isEnabled: ${isEnabled},
+realItens: ${realItens}
     ''';
   }
 }
