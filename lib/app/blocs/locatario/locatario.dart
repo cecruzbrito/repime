@@ -5,4 +5,6 @@ class Locatario {
   Universidade universidade;
   Cidade cidade;
   Locatario({required this.cidade, required this.universidade});
+
+  static Locatario zero = Locatario(cidade: Cidade.zero, universidade: Universidade.zero);
 }

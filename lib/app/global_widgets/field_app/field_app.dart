@@ -14,17 +14,23 @@ class FieldApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _size = MediaQuery.of(context).size;
-    var fontSize = _size.height * .02;
+    var size = MediaQuery.of(context).size;
+    var fontSize = size.height * .02;
 
     return TextFormField(
+      obscureText: settingsFieldApp.obscureText,
       controller: settingsFieldApp.ctr,
       onTap: settingsFieldApp.onTap,
       onChanged: settingsFieldApp.onChange,
       cursorColor: _colorEnable,
+      maxLength: settingsFieldApp.max,
+      keyboardType: settingsFieldApp.isMultLine ? TextInputType.multiline : null,
+      maxLines: settingsFieldApp.isMultLine ? 3 : 1,
+      minLines: settingsFieldApp.isMultLine ? 3 : 1,
       validator: settingsFieldApp.validator,
       style: TextStyle(fontSize: fontSize, color: _colorEnable),
       decoration: InputDecoration(
+          suffixIcon: settingsFieldApp.suffixWidget,
           labelText: settingsFieldApp.labelText,
           hintText: settingsFieldApp.hintText,
           labelStyle: TextStyle(color: _colorEnable),

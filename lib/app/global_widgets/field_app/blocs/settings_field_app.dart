@@ -6,6 +6,19 @@ class SettingsFieldApp {
   void Function()? onTap;
   void Function(String)? onChange;
   String? Function(String?)? validator;
-
-  SettingsFieldApp({this.hintText, this.labelText, this.onChange, this.onTap, this.ctr, this.validator});
+  bool obscureText;
+  Widget? suffixWidget;
+  int? max;
+  bool isMultLine;
+  SettingsFieldApp(
+      {this.hintText,
+      this.max,
+      this.labelText,
+      this.onChange,
+      this.onTap,
+      this.ctr,
+      this.validator,
+      this.isMultLine = false,
+      this.obscureText = false,
+      this.suffixWidget});
 }
