@@ -10,6 +10,8 @@ class SettingsFieldApp {
   Widget? suffixWidget;
   int? max;
   bool isMultLine;
+  bool? isAlternative;
+
   SettingsFieldApp(
       {this.hintText,
       this.max,
@@ -19,6 +21,7 @@ class SettingsFieldApp {
       this.ctr,
       this.validator,
       this.isMultLine = false,
+      this.isAlternative = false,
       this.obscureText = false,
       this.suffixWidget});
 }

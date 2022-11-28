@@ -5,6 +5,7 @@ import 'package:repime/app/pages/registrar_locador_page/widgets/parte_1/button_c
 import '../../../../global_widgets/field_app/blocs/settings_field_app.dart';
 import '../../../../global_widgets/field_app/field_app.dart';
 import '../../ctr_registrar_locador_page/ctr_registrar_locador_page.dart';
+import 'cabecalho.dart';
 import 'suffix_icon_senha.dart';
 
 class InsercaoDadosParte1 extends StatelessWidget {
@@ -21,6 +22,7 @@ class InsercaoDadosParte1 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Cabecalho(),
               FieldApp(
                   settingsFieldApp: SettingsFieldApp(
                       ctr: ctrRegistrarLocador.ctrTextNome,

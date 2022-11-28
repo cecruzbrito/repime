@@ -16,6 +16,29 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
           Computed<bool>(() => super.isShowContinueParte1,
               name: '_CtrRegistrarLocadorPageBase.isShowContinueParte1'))
       .value;
+  Computed<bool>? _$isShowContinueParte3Computed;
+
+  @override
+  bool get isShowContinueParte3 => (_$isShowContinueParte3Computed ??=
+          Computed<bool>(() => super.isShowContinueParte3,
+              name: '_CtrRegistrarLocadorPageBase.isShowContinueParte3'))
+      .value;
+
+  late final _$atualIndexAtom =
+      Atom(name: '_CtrRegistrarLocadorPageBase.atualIndex', context: context);
+
+  @override
+  int get atualIndex {
+    _$atualIndexAtom.reportRead();
+    return super.atualIndex;
+  }
+
+  @override
+  set atualIndex(int value) {
+    _$atualIndexAtom.reportWrite(value, super.atualIndex, () {
+      super.atualIndex = value;
+    });
+  }
 
   late final _$formFieldParte1Atom = Atom(
       name: '_CtrRegistrarLocadorPageBase.formFieldParte1', context: context);
@@ -129,6 +152,38 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
     });
   }
 
+  late final _$imageAtom =
+      Atom(name: '_CtrRegistrarLocadorPageBase.image', context: context);
+
+  @override
+  XFile? get image {
+    _$imageAtom.reportRead();
+    return super.image;
+  }
+
+  @override
+  set image(XFile? value) {
+    _$imageAtom.reportWrite(value, super.image, () {
+      super.image = value;
+    });
+  }
+
+  late final _$tiposResidenciaAtom = Atom(
+      name: '_CtrRegistrarLocadorPageBase.tiposResidencia', context: context);
+
+  @override
+  ObservableList<EnumTipoResidenciaStore> get tiposResidencia {
+    _$tiposResidenciaAtom.reportRead();
+    return super.tiposResidencia;
+  }
+
+  @override
+  set tiposResidencia(ObservableList<EnumTipoResidenciaStore> value) {
+    _$tiposResidenciaAtom.reportWrite(value, super.tiposResidencia, () {
+      super.tiposResidencia = value;
+    });
+  }
+
   late final _$onTapContinueAsyncAction = AsyncAction(
       '_CtrRegistrarLocadorPageBase.onTapContinue',
       context: context);
@@ -138,8 +193,27 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
     return _$onTapContinueAsyncAction.run(() => super.onTapContinue());
   }
 
+  late final _$getImageAsyncAction =
+      AsyncAction('_CtrRegistrarLocadorPageBase.getImage', context: context);
+
+  @override
+  Future<void> getImage() {
+    return _$getImageAsyncAction.run(() => super.getImage());
+  }
+
   late final _$_CtrRegistrarLocadorPageBaseActionController =
       ActionController(name: '_CtrRegistrarLocadorPageBase', context: context);
+
+  @override
+  void _setIndex(int value) {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase._setIndex');
+    try {
+      return super._setIndex(value);
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic _setLoading(bool value) {
@@ -175,8 +249,64 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
   }
 
   @override
+  void voltarFromParte2() {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.voltarFromParte2');
+    try {
+      return super.voltarFromParte2();
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void continueFromParte2() {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.continueFromParte2');
+    try {
+      return super.continueFromParte2();
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeImage() {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.removeImage');
+    try {
+      return super.removeImage();
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void onTapTipoResidencia(EnumTipoResidenciaStore t) {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.onTapTipoResidencia');
+    try {
+      return super.onTapTipoResidencia(t);
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void voltarFromParte3() {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.voltarFromParte3');
+    try {
+      return super.voltarFromParte3();
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+atualIndex: ${atualIndex},
 formFieldParte1: ${formFieldParte1},
 keyScaffold: ${keyScaffold},
 ctrTextNome: ${ctrTextNome},
@@ -184,7 +314,10 @@ loading: ${loading},
 ctrTextSenha: ${ctrTextSenha},
 obscureSenha: ${obscureSenha},
 ctrTextContato: ${ctrTextContato},
-isShowContinueParte1: ${isShowContinueParte1}
+image: ${image},
+tiposResidencia: ${tiposResidencia},
+isShowContinueParte1: ${isShowContinueParte1},
+isShowContinueParte3: ${isShowContinueParte3}
     ''';
   }
 }
