@@ -11,6 +11,7 @@ class SettingsFieldApp {
   int? max;
   bool isMultLine;
   bool? isAlternative;
+  bool isDate;
 
   SettingsFieldApp(
       {this.hintText,
@@ -23,5 +24,6 @@ class SettingsFieldApp {
       this.isMultLine = false,
       this.isAlternative = false,
       this.obscureText = false,
+      this.isDate = false,
       this.suffixWidget});
 }

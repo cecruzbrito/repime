@@ -23,6 +23,13 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
           Computed<bool>(() => super.isShowContinueParte3,
               name: '_CtrRegistrarLocadorPageBase.isShowContinueParte3'))
       .value;
+  Computed<bool>? _$isRepublicaComputed;
+
+  @override
+  bool get isRepublica =>
+      (_$isRepublicaComputed ??= Computed<bool>(() => super.isRepublica,
+              name: '_CtrRegistrarLocadorPageBase.isRepublica'))
+          .value;
 
   late final _$atualIndexAtom =
       Atom(name: '_CtrRegistrarLocadorPageBase.atualIndex', context: context);
@@ -184,6 +191,104 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
     });
   }
 
+  late final _$formFieldParte4Atom = Atom(
+      name: '_CtrRegistrarLocadorPageBase.formFieldParte4', context: context);
+
+  @override
+  GlobalKey<FormState> get formFieldParte4 {
+    _$formFieldParte4Atom.reportRead();
+    return super.formFieldParte4;
+  }
+
+  @override
+  set formFieldParte4(GlobalKey<FormState> value) {
+    _$formFieldParte4Atom.reportWrite(value, super.formFieldParte4, () {
+      super.formFieldParte4 = value;
+    });
+  }
+
+  late final _$ctrNomeRepublicaAtom = Atom(
+      name: '_CtrRegistrarLocadorPageBase.ctrNomeRepublica', context: context);
+
+  @override
+  TextEditingController get ctrNomeRepublica {
+    _$ctrNomeRepublicaAtom.reportRead();
+    return super.ctrNomeRepublica;
+  }
+
+  @override
+  set ctrNomeRepublica(TextEditingController value) {
+    _$ctrNomeRepublicaAtom.reportWrite(value, super.ctrNomeRepublica, () {
+      super.ctrNomeRepublica = value;
+    });
+  }
+
+  late final _$ctrEnderecoResidenciaAtom = Atom(
+      name: '_CtrRegistrarLocadorPageBase.ctrEnderecoResidencia',
+      context: context);
+
+  @override
+  TextEditingController get ctrEnderecoResidencia {
+    _$ctrEnderecoResidenciaAtom.reportRead();
+    return super.ctrEnderecoResidencia;
+  }
+
+  @override
+  set ctrEnderecoResidencia(TextEditingController value) {
+    _$ctrEnderecoResidenciaAtom.reportWrite(value, super.ctrEnderecoResidencia,
+        () {
+      super.ctrEnderecoResidencia = value;
+    });
+  }
+
+  late final _$ctrFundacaoAnoAtom = Atom(
+      name: '_CtrRegistrarLocadorPageBase.ctrFundacaoAno', context: context);
+
+  @override
+  TextEditingController get ctrFundacaoAno {
+    _$ctrFundacaoAnoAtom.reportRead();
+    return super.ctrFundacaoAno;
+  }
+
+  @override
+  set ctrFundacaoAno(TextEditingController value) {
+    _$ctrFundacaoAnoAtom.reportWrite(value, super.ctrFundacaoAno, () {
+      super.ctrFundacaoAno = value;
+    });
+  }
+
+  late final _$ctrFundacaoMesAtom = Atom(
+      name: '_CtrRegistrarLocadorPageBase.ctrFundacaoMes', context: context);
+
+  @override
+  TextEditingController get ctrFundacaoMes {
+    _$ctrFundacaoMesAtom.reportRead();
+    return super.ctrFundacaoMes;
+  }
+
+  @override
+  set ctrFundacaoMes(TextEditingController value) {
+    _$ctrFundacaoMesAtom.reportWrite(value, super.ctrFundacaoMes, () {
+      super.ctrFundacaoMes = value;
+    });
+  }
+
+  late final _$ctrFundacaoDiaAtom = Atom(
+      name: '_CtrRegistrarLocadorPageBase.ctrFundacaoDia', context: context);
+
+  @override
+  TextEditingController get ctrFundacaoDia {
+    _$ctrFundacaoDiaAtom.reportRead();
+    return super.ctrFundacaoDia;
+  }
+
+  @override
+  set ctrFundacaoDia(TextEditingController value) {
+    _$ctrFundacaoDiaAtom.reportWrite(value, super.ctrFundacaoDia, () {
+      super.ctrFundacaoDia = value;
+    });
+  }
+
   late final _$onTapContinueAsyncAction = AsyncAction(
       '_CtrRegistrarLocadorPageBase.onTapContinue',
       context: context);
@@ -199,6 +304,15 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
   @override
   Future<void> getImage() {
     return _$getImageAsyncAction.run(() => super.getImage());
+  }
+
+  late final _$onTapContinue4AsyncAction = AsyncAction(
+      '_CtrRegistrarLocadorPageBase.onTapContinue4',
+      context: context);
+
+  @override
+  Future onTapContinue4() {
+    return _$onTapContinue4AsyncAction.run(() => super.onTapContinue4());
   }
 
   late final _$_CtrRegistrarLocadorPageBaseActionController =
@@ -304,6 +418,85 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
   }
 
   @override
+  void onTapContinueParte3() {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.onTapContinueParte3');
+    try {
+      return super.onTapContinueParte3();
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatorNomeRepublica(String? value) {
+    final _$actionInfo =
+        _$_CtrRegistrarLocadorPageBaseActionController.startAction(
+            name: '_CtrRegistrarLocadorPageBase.validatorNomeRepublica');
+    try {
+      return super.validatorNomeRepublica(value);
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatorEnderecoResidencia(String? value) {
+    final _$actionInfo =
+        _$_CtrRegistrarLocadorPageBaseActionController.startAction(
+            name: '_CtrRegistrarLocadorPageBase.validatorEnderecoResidencia');
+    try {
+      return super.validatorEnderecoResidencia(value);
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatorFundacaoAno(String? value) {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.validatorFundacaoAno');
+    try {
+      return super.validatorFundacaoAno(value);
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatorFundacaoMes(String? value) {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.validatorFundacaoMes');
+    try {
+      return super.validatorFundacaoMes(value);
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatorFundacaoDia(String? value) {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.validatorFundacaoDia');
+    try {
+      return super.validatorFundacaoDia(value);
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic onTapVoltar4() {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.onTapVoltar4');
+    try {
+      return super.onTapVoltar4();
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 atualIndex: ${atualIndex},
@@ -316,8 +509,15 @@ obscureSenha: ${obscureSenha},
 ctrTextContato: ${ctrTextContato},
 image: ${image},
 tiposResidencia: ${tiposResidencia},
+formFieldParte4: ${formFieldParte4},
+ctrNomeRepublica: ${ctrNomeRepublica},
+ctrEnderecoResidencia: ${ctrEnderecoResidencia},
+ctrFundacaoAno: ${ctrFundacaoAno},
+ctrFundacaoMes: ${ctrFundacaoMes},
+ctrFundacaoDia: ${ctrFundacaoDia},
 isShowContinueParte1: ${isShowContinueParte1},
-isShowContinueParte3: ${isShowContinueParte3}
+isShowContinueParte3: ${isShowContinueParte3},
+isRepublica: ${isRepublica}
     ''';
   }
 }

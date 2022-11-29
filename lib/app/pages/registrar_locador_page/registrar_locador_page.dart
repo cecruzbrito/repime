@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:repime/app/global_widgets/loading_app/loading_app.dart';
 import 'package:repime/app/pages/registrar_locador_page/ctr_registrar_locador_page/ctr_registrar_locador_page.dart';
 import 'package:repime/app/pages/registrar_locador_page/widgets/parte_2/insercao_dados_parte_2.dart';
+import 'package:repime/app/pages/registrar_locador_page/widgets/parte_4/insercao_dados_parte_4.dart';
 
 import 'widgets/parte_1/insercao_dados_parte_1.dart';
 import 'widgets/parte_3/insercao_dados_parte_3.dart';
@@ -37,6 +38,8 @@ class _RegistrarLocadorPageState extends State<RegistrarLocadorPage> {
                       return InsercaoDadosParte2(ctrRegistrarLocadorPage: ctr);
                     case 3:
                       return InsercaoDadosParte3(ctrRegistrarLocadorPage: ctr);
+                    case 4:
+                      return InsercaoDadosParte4(ctrRegistrarLocadorPage: ctr);
                     default:
                       return Container();
                   }

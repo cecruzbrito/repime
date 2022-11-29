@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:repime/app/blocs/residencia/db/residencia_db.dart';
+import 'package:repime/app/blocs/residencia/residencia.dart';
 
 import '../../../config/routes_app/routes_app.dart';
 

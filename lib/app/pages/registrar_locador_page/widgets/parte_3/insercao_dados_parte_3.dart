@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../global_widgets/button_text_app/button_text_app.dart';
 import '../../ctr_registrar_locador_page/ctr_registrar_locador_page.dart';
+import 'cabecalho.dart';
 import 'selecione_tipo.dart';
 
 class InsercaoDadosParte3 extends StatelessWidget {
@@ -14,7 +15,15 @@ class InsercaoDadosParte3 extends StatelessWidget {
     var _size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        SelecioneTipo(ctrRegistrarLocadorPage: ctrRegistrarLocadorPage),
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Cabecalho(),
+              SelecioneTipo(ctrRegistrarLocadorPage: ctrRegistrarLocadorPage),
+            ],
+          ),
+        ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Column(
@@ -27,7 +36,7 @@ class InsercaoDadosParte3 extends StatelessWidget {
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ButtonTextApp(text: 'Continue', onPressed: () {}),
+                    ButtonTextApp(text: 'Continue', onPressed: ctrRegistrarLocadorPage.onTapContinueParte3),
                     SizedBox(height: _size.height * .01),
                   ],
                 );

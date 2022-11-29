@@ -2,7 +2,8 @@ import 'package:repime/app/blocs/connection_database/connection_database.dart';
 import 'package:repime/app/blocs/locador/locador.dart';
 
 class LocadorDB extends Locador {
-  LocadorDB({required super.id, required super.contato, required super.nome, required super.senha});
+  LocadorDB(
+      {required super.id, required super.contato, required super.nome, required super.senha, super.foto});
 
   static Future<void> inserirInDB(Locador locador) async => await ConnectionDataBase().make(QueryDataBase(
           commandSQL:

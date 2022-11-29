@@ -1,3 +1,5 @@
+import 'package:repime/app/blocs/residencia/residencia.dart';
+
 class Locador {
   int id;
   String nome, senha, contato;

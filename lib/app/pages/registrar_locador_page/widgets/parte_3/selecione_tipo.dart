@@ -9,19 +9,17 @@ class SelecioneTipo extends StatelessWidget {
   final CtrRegistrarLocadorPage ctrRegistrarLocadorPage;
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Observer(builder: (_) {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (var t in ctrRegistrarLocadorPage.tiposResidencia)
-              ItemResidencia(
-                tipoResidenciaStore: t,
-                onPressed: () => ctrRegistrarLocadorPage.onTapTipoResidencia(t),
-              )
-          ],
-        );
-      }),
-    );
+    return Observer(builder: (_) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (var t in ctrRegistrarLocadorPage.tiposResidencia)
+            ItemResidencia(
+              tipoResidenciaStore: t,
+              onPressed: () => ctrRegistrarLocadorPage.onTapTipoResidencia(t),
+            )
+        ],
+      );
+    });
   }
 }
