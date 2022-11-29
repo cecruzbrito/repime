@@ -26,6 +26,21 @@ class ResidenciaDB extends Residencia {
     }
   }
 
+  static insercaoRepublica({required Locador locador, required Residencia residencia}) async =>
+      await ConnectionDataBase().make(QueryDataBase(commandSQL: """
+    SELECT  * FROM adiciona_locador_residencia( @nomeL, @senhaL, @contatoL, @fotoL, @idCidade, @tipoR, @lat, @long, @endr )
+ """, arguments: {
+        'nomeL': locador.nome,
+        'senhaL': locador.senha,
+        'contatoL': locador.contato,
+        'fotoL': locador.foto,
+        'idCidade': residencia.cidade.id,
+        'tipoR': residencia.tipo.toNameDB(),
+        'lat': residencia.endereco.lat,
+        'long': residencia.endereco.log,
+        'endr': residencia.endereco.endereco,
+      }));
+
   static Future<void> inserirResidencia(Residencia residencia, Locador locador) async {
     await ConnectionDataBase().make(QueryDataBase(
         commandSQL:

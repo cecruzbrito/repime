@@ -1,6 +1,8 @@
 import 'package:repime/app/blocs/connection_database/connection_database.dart';
 import 'package:repime/app/blocs/residencia/blocs/republica/republica.dart';
 
+import '../../../../locador/locador.dart';
+
 class RepublicaDB extends Republica {
   RepublicaDB(
       {required super.cidade,
@@ -22,4 +24,22 @@ class RepublicaDB extends Republica {
           'fundacao_r': republica.dateFundacao
         }));
   }
+
+  static insercaoRepublica({required Locador locador, required Republica republica}) async =>
+      await ConnectionDataBase().make(QueryDataBase(commandSQL: """
+    SELECT  *  FROM adiciona_locador_residencia_republica( @nomeL, @senhaL, @contatoL, @fotoL, @idCidade, @tipoR, @lat, @long, @endR,@nomeR, @trotesR, @fund );
+ """, arguments: {
+        'nomeL': locador.nome,
+        'senhaL': locador.senha,
+        'contatoL': locador.contato,
+        'fotoL': locador.foto,
+        'idCidade': republica.cidade.id,
+        'tipoR': republica.tipo.toNameDB(),
+        'lat': republica.endereco.lat,
+        'long': republica.endereco.log,
+        'endR': republica.endereco.endereco,
+        'nomeR': republica.nome,
+        'trotesR': republica.isTrote,
+        'fund': republica.dateFundacao
+      }));
 }

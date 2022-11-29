@@ -6,26 +6,36 @@ class ButtonIconApp extends StatelessWidget {
       required this.icon,
       required this.onPressed,
       required this.sizeIcon,
+      this.isAlternative = false,
       this.colorButton = Colors.black});
   final IconData icon;
   final Function() onPressed;
   final double sizeIcon;
   final Color colorButton;
+  final bool isAlternative;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(size.width * .03))),
-        elevation: 8,
+        shape: RoundedRectangleBorder(
+            side: !isAlternative
+                ? BorderSide.none
+                : BorderSide(
+                    width: size.width * .001,
+                    color: Colors.black26,
+                  ),
+            borderRadius: BorderRadius.all(Radius.circular(size.width * .03))),
+        elevation: isAlternative ? 0 : 8,
+        minimumSize: Size(size.width * .15, 0),
         padding: EdgeInsets.symmetric(vertical: size.height * .02),
-        backgroundColor: colorButton,
+        backgroundColor: isAlternative ? Colors.transparent : colorButton,
       ),
       child: Icon(
         icon,
         size: sizeIcon,
-        color: Colors.white,
+        color: isAlternative ? Colors.black : Colors.white,
       ),
     );
   }

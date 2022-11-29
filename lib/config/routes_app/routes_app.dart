@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:repime/app/pages/first_page/first_page.dart';
 import 'package:repime/config/routes_app/guards/first_page/first_page_guard.dart';
 
-import '../../app/pages/home_page/home_page.dart';
-import '../../app/pages/registrar_locador_page/registrar_locador_page.dart';
+import '../../app/pages/pages/first_page/first_page.dart';
+import '../../app/pages/pages/home_page/home_page.dart';
+import '../../app/pages/pages/registrar_locador_page/registrar_locador_page.dart';
 
 class RouteApp {
   String name;
