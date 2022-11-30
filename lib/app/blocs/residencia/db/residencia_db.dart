@@ -1,10 +1,7 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:repime/app/blocs/cidade/db/cidade_db.dart';
 import 'package:repime/app/blocs/connection_database/connection_database.dart';
-import 'package:repime/app/blocs/locatario/locatario.dart';
 import 'package:repime/app/blocs/residencia/blocs/endereco/db/endereco_db.dart';
 import 'package:repime/app/blocs/residencia/residencia.dart';
-import 'package:repime/app/pages/controller/main_controller.dart';
 
 import '../../locador/locador.dart';
 import '../../util/enum_tipos_residencia/enum_tipo_residencia.dart';
@@ -12,18 +9,14 @@ import '../../util/enum_tipos_residencia/enum_tipo_residencia.dart';
 class ResidenciaDB extends Residencia {
   ResidenciaDB({required super.cidade, required super.id, required super.tipo, required super.endereco});
 
-  static getAll() async {
-    try {
-      var r = await ConnectionDataBase().make(QueryDataBase(
+  static getAll(Locador locador) async {
+    var r = await ConnectionDataBase().make(
+      QueryDataBase(
           commandSQL:
-              'SELECT r.id, r.tipo, r.id_locador, r.id_cidade, (endereco).latitude, (endereco).longitude , (endereco).endereco  ,c.*, l.* FROM residencia as r JOIN cidade as c ON c.id = r.id_cidade JOIN locador l ON l.id = r.id_locador'));
-      for (var x in r) {
-        var s = ResidenciaDB.fromJson(x);
-        print(s);
-      }
-    } on Exception catch (e) {
-      print(e);
-    }
+              'SELECT r.id, r.tipo, r.id_locador, r.id_cidade, (endereco).latitude, (endereco).longitude , (endereco).endereco  ,c.*, l.* FROM residencia as r JOIN cidade as c ON c.id = r.id_cidade JOIN locador l ON l.id = r.id_locador WHERE r.id_locador = @idLocador',
+          arguments: {'idLocador': locador.id}),
+    );
+    return ResidenciaDB.fromJson(r[0]);
   }
 
   static insercaoRepublica({required Locador locador, required Residencia residencia}) async =>
@@ -60,4 +53,11 @@ class ResidenciaDB extends Residencia {
       id: j['residencia']['id'],
       tipo: EnumTiposResidencia.fromJson(j['residencia']),
       endereco: EnderecoDB.fromJson(j));
+
+  toJson() => {
+        'residencia': {'id': id, 'tipo': tipo.toJson(), 'cidade': CidadeDB.toDB(cidade).toJson()}
+      };
+
+  static ResidenciaDB toDB(Residencia r) =>
+      ResidenciaDB(cidade: r.cidade, endereco: r.endereco, id: r.id, tipo: r.tipo);
 }

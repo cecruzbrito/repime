@@ -187,6 +187,14 @@ mixin _$CtrFirstPage on _CtrFirstPageBase, Store {
         .run(() => super._makeGetUniversidade(cidade));
   }
 
+  late final _$onTapContinueAsyncAction =
+      AsyncAction('_CtrFirstPageBase.onTapContinue', context: context);
+
+  @override
+  Future<void> onTapContinue() {
+    return _$onTapContinueAsyncAction.run(() => super.onTapContinue());
+  }
+
   late final _$_CtrFirstPageBaseActionController =
       ActionController(name: '_CtrFirstPageBase', context: context);
 
@@ -284,17 +292,6 @@ mixin _$CtrFirstPage on _CtrFirstPageBase, Store {
         name: '_CtrFirstPageBase.validatorUniversidade');
     try {
       return super.validatorUniversidade(value);
-    } finally {
-      _$_CtrFirstPageBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void onTapContinue() {
-    final _$actionInfo = _$_CtrFirstPageBaseActionController.startAction(
-        name: '_CtrFirstPageBase.onTapContinue');
-    try {
-      return super.onTapContinue();
     } finally {
       _$_CtrFirstPageBaseActionController.endAction(_$actionInfo);
     }

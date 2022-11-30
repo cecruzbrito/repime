@@ -5,6 +5,7 @@ import 'package:repime/app/blocs/cidade/cidade.dart';
 import 'package:repime/app/blocs/cidade/db/cidade_db.dart';
 import 'package:repime/app/blocs/locatario/db/locatario_db.dart';
 import 'package:repime/app/blocs/universidade/universidade.dart';
+import 'package:repime/app/pages/controller/main_controller.dart';
 
 import '../../../../../config/routes_app/routes_app.dart';
 import '../../../../blocs/universidade/db/universidade_db.dart';
@@ -107,10 +108,11 @@ abstract class _CtrFirstPageBase with Store {
   }
 
   @action
-  void onTapContinue() {
+  Future<void> onTapContinue() async {
     if (!formField.currentState!.validate()) return;
     var locatarioDb = LocatarioDB(cidade: _cidadeSelecionada!, universidade: _universidadeSelecionada!);
-    locatarioDb.setCache();
+    await locatarioDb.setCache();
+    Modular.get<MainController>().setLocatarioAtual(locatarioDb);
     Modular.to.pushNamed(RouteApp.homePage.name);
   }
 

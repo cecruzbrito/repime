@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:repime/app/blocs/vaga/db/vaga_db.dart';
+import 'package:repime/app/blocs/vaga/vaga.dart';
 
 import 'widgtes/cabecalho.dart';
 
@@ -10,6 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

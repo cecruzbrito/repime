@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:repime/config/routes_app/guards/first_page/first_page_guard.dart';
 
+import '../../app/pages/pages/adicionar_vaga_page/adicionar_vaga_page.dart';
 import '../../app/pages/pages/first_page/first_page.dart';
 import '../../app/pages/pages/home_page/home_page.dart';
 import '../../app/pages/pages/registrar_locador_page/registrar_locador_page.dart';
@@ -15,7 +16,11 @@ class RouteApp {
   ChildRoute get childRoute => ChildRoute(name, child: (context, args) => route, guards: guards ?? []);
 
   static RouteApp firstPage = RouteApp(name: '/', guards: [FirstPageCheckCache()], route: const FirstPage());
+
   static RouteApp homePage = RouteApp(name: '/homePage', route: const HomePage());
+
   static RouteApp registrarLocadorPage =
       RouteApp(name: '/registrarLocadorPage', route: const RegistrarLocadorPage());
+
+  static RouteApp adicionarVaga = RouteApp(name: '/adicionarVaga', route: const AdicionarVagaPage());
 }

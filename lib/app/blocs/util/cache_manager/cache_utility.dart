@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CacheUtility {
@@ -26,5 +27,13 @@ class CacheUtility {
     var file = File(await _realPath(pathName));
     if (!(await file.exists())) return;
     await file.delete();
+  }
+
+  static Future<String> setImage(Uint8List bytes, String path) async {
+    var realP = await _realPath(path, ext: 'jpg');
+    var file = File(realP);
+    if (await file.exists()) await file.delete();
+    await file.writeAsBytes(bytes);
+    return file.path;
   }
 }

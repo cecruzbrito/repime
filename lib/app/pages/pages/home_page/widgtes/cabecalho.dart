@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:repime/app/pages/controller/main_controller.dart';
+import 'package:repime/config/routes_app/routes_app.dart';
 
+import '../../../../blocs/locador/db/locador_db.dart';
+import '../../../../blocs/vaga/db/vaga_db.dart';
 import '../../../../global_widgets/button_icon/button_icon_app.dart';
 
 class Cabecalho extends StatelessWidget {
@@ -18,13 +24,17 @@ class Cabecalho extends StatelessWidget {
           children: [
             ButtonIconApp(
               icon: Icons.person,
-              onPressed: () {},
+              onPressed: () async {
+                Modular.to.pushNamed(RouteApp.registrarLocadorPage.name);
+              },
               sizeIcon: size.height * .03,
               isAlternative: true,
             ),
             ButtonIconApp(
               icon: Icons.add,
-              onPressed: () {},
+              onPressed: () {
+                Modular.to.pushNamed(RouteApp.adicionarVaga.name);
+              },
               sizeIcon: size.height * .03,
             ),
           ],
@@ -46,7 +56,11 @@ class Cabecalho extends StatelessWidget {
                   TextStyle(fontSize: size.height * .035, fontWeight: FontWeight.bold, color: Colors.black),
             ),
             SizedBox(height: size.height * .01),
-            Divider()
+            Divider(),
+            Observer(builder: (_) {
+              if (Modular.get<MainController>().locadorAtual.foto == null) return Container();
+              return Image.file(File(Modular.get<MainController>().locadorAtual.foto!));
+            })
           ],
         ),
       ],

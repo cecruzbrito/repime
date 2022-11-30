@@ -204,6 +204,7 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
           foto: image == null ? null : base64Encode(await image!.readAsBytes()));
 
       var cidade = Modular.get<MainController>().locatarioAtual.cidade;
+      print(cidade.nome);
 
       var residencia = Residencia(
           cidade: cidade,
@@ -228,6 +229,10 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
       } else {
         await ResidenciaDB.inserirResidencia(residencia, locador);
       }
+
+      var l = await LocadorDB.makeLogin(ctrTextNome.text, ctrTextSenha.text);
+      await l!.setCache();
+      Modular.get<MainController>().setLocadorAtual(l);
       Modular.to.pop();
 
       ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(SnackBarApp.show(
@@ -243,4 +248,6 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
   onTapVoltar4() {
     _setIndex(3);
   }
+
+  void dispose() {}
 }

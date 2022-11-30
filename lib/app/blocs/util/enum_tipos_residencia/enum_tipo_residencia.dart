@@ -14,6 +14,15 @@ enum EnumTiposResidencia {
 
   static EnumTiposResidencia fromJson(j) => j['tipo'] == 'republica' ? replublica : kitnet;
 
+  toJson() {
+    switch (this) {
+      case EnumTiposResidencia.kitnet:
+        return 'kitnet';
+      case EnumTiposResidencia.replublica:
+        return 'republica';
+    }
+  }
+
   String toNameDB() {
     switch (this) {
       case EnumTiposResidencia.kitnet:

@@ -19,7 +19,7 @@ class _RegistrarLocadorPageState extends State<RegistrarLocadorPage> {
   final CtrRegistrarLocadorPage ctr = CtrRegistrarLocadorPage();
   @override
   Widget build(BuildContext context) {
-    var _size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     return Scaffold(
         key: ctr.keyScaffold,
         body: Observer(builder: (_) {
@@ -27,7 +27,7 @@ class _RegistrarLocadorPageState extends State<RegistrarLocadorPage> {
             return const LoadingApp();
           }
           return Padding(
-              padding: EdgeInsets.symmetric(horizontal: _size.width * .05, vertical: _size.height * .02),
+              padding: EdgeInsets.symmetric(horizontal: size.width * .05, vertical: size.height * .02),
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 800),
                 child: Observer(builder: (_) {
