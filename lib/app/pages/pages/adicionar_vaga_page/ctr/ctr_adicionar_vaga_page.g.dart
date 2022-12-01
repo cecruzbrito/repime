@@ -9,6 +9,22 @@ part of 'ctr_adicionar_vaga_page.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$CtrAdicionarVagaPage on _CtrAdicionarVagaPageBase, Store {
+  late final _$keyScaffoldAtom =
+      Atom(name: '_CtrAdicionarVagaPageBase.keyScaffold', context: context);
+
+  @override
+  GlobalKey<ScaffoldState> get keyScaffold {
+    _$keyScaffoldAtom.reportRead();
+    return super.keyScaffold;
+  }
+
+  @override
+  set keyScaffold(GlobalKey<ScaffoldState> value) {
+    _$keyScaffoldAtom.reportWrite(value, super.keyScaffold, () {
+      super.keyScaffold = value;
+    });
+  }
+
   late final _$indexPageAtom =
       Atom(name: '_CtrAdicionarVagaPageBase.indexPage', context: context);
 
@@ -22,6 +38,22 @@ mixin _$CtrAdicionarVagaPage on _CtrAdicionarVagaPageBase, Store {
   set indexPage(int value) {
     _$indexPageAtom.reportWrite(value, super.indexPage, () {
       super.indexPage = value;
+    });
+  }
+
+  late final _$loadingAtom =
+      Atom(name: '_CtrAdicionarVagaPageBase.loading', context: context);
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
     });
   }
 
@@ -131,6 +163,17 @@ mixin _$CtrAdicionarVagaPage on _CtrAdicionarVagaPageBase, Store {
   }
 
   @override
+  void _setLoading(bool value) {
+    final _$actionInfo = _$_CtrAdicionarVagaPageBaseActionController
+        .startAction(name: '_CtrAdicionarVagaPageBase._setLoading');
+    try {
+      return super._setLoading(value);
+    } finally {
+      _$_CtrAdicionarVagaPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String? onValidatorInformacoes(String? value) {
     final _$actionInfo = _$_CtrAdicionarVagaPageBaseActionController
         .startAction(name: '_CtrAdicionarVagaPageBase.onValidatorInformacoes');
@@ -177,7 +220,9 @@ mixin _$CtrAdicionarVagaPage on _CtrAdicionarVagaPageBase, Store {
   @override
   String toString() {
     return '''
+keyScaffold: ${keyScaffold},
 indexPage: ${indexPage},
+loading: ${loading},
 formFieldParte1: ${formFieldParte1},
 ctrInformacoesAdicionais: ${ctrInformacoesAdicionais},
 ctrValorMensalidade: ${ctrValorMensalidade},

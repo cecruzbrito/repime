@@ -24,17 +24,13 @@ class Cabecalho extends StatelessWidget {
           children: [
             ButtonIconApp(
               icon: Icons.person,
-              onPressed: () async {
-                Modular.to.pushNamed(RouteApp.registrarLocadorPage.name);
-              },
+              onPressed: () => Modular.to.pushNamed(RouteApp.registrarLocadorPage.name),
               sizeIcon: size.height * .03,
               isAlternative: true,
             ),
             ButtonIconApp(
               icon: Icons.add,
-              onPressed: () {
-                Modular.to.pushNamed(RouteApp.adicionarVaga.name);
-              },
+              onPressed: () => Modular.to.pushNamed(RouteApp.adicionarVaga.name),
               sizeIcon: size.height * .03,
             ),
           ],
@@ -56,7 +52,7 @@ class Cabecalho extends StatelessWidget {
                   TextStyle(fontSize: size.height * .035, fontWeight: FontWeight.bold, color: Colors.black),
             ),
             SizedBox(height: size.height * .01),
-            Divider(),
+            const Divider(),
           ],
         ),
       ],

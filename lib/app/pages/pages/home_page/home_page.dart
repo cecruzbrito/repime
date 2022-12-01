@@ -22,7 +22,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    print(Modular.get<MainController>().locadorAtual == Locador.zero);
     ctr.getVagas();
   }
 
@@ -40,14 +39,18 @@ class _HomePageState extends State<HomePage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Cabecalho(),
-                    Center(child: LoadingApp()),
+                    Expanded(child: LoadingApp()),
                   ],
                 ),
               );
             }
             return SingleChildScrollView(
               child: Column(
-                children: [Cabecalho(), for (var v in ctr.vagas) VagaCard(vaga: v)],
+                children: [
+                  Cabecalho(),
+                  SizedBox(height: size.height * .03),
+                  for (var v in ctr.vagas) VagaCard(vaga: v)
+                ],
               ),
             );
           }),

@@ -9,4 +9,6 @@ class Vaga {
       required this.informacoes,
       required this.mensalidade,
       required this.fotos});
+
+  String get mensalidadeFormatada => 'R\$$mensalidade';
 }

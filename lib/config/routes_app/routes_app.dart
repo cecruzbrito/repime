@@ -23,4 +23,6 @@ class RouteApp {
       RouteApp(name: '/registrarLocadorPage', route: const RegistrarLocadorPage());
 
   static RouteApp adicionarVaga = RouteApp(name: '/adicionarVaga', route: const AdicionarVagaPage());
+
+  static RouteApp detalhesVaga = RouteApp(name: '/detalhesVaga', route: Container());
 }

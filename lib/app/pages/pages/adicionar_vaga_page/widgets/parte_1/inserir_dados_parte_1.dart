@@ -5,6 +5,8 @@ import 'package:repime/app/global_widgets/field_app/blocs/settings_field_app.dar
 import 'package:repime/app/global_widgets/field_app/field_app.dart';
 import 'package:repime/app/pages/pages/adicionar_vaga_page/ctr/ctr_adicionar_vaga_page.dart';
 
+import 'cabecalho.dart';
+
 class InserirDadosParte1 extends StatelessWidget {
   const InserirDadosParte1({super.key, required this.ctrAdicionarVagaPage});
 
@@ -21,6 +23,7 @@ class InserirDadosParte1 extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const Cabecalho(),
                 FieldApp(
                     settingsFieldApp: SettingsFieldApp(
                   isMultLine: true,

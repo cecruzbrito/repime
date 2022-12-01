@@ -5,7 +5,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:repime/app/global_widgets/button_text_app/button_text_app.dart';
 import 'package:repime/app/pages/pages/adicionar_vaga_page/ctr/ctr_adicionar_vaga_page.dart';
 
-import '../../../../global_widgets/button_icon/button_icon_app.dart';
+import '../../../../../global_widgets/button_icon/button_icon_app.dart';
+import 'cabecalho.dart';
 
 class InserirDadosParte2 extends StatelessWidget {
   InserirDadosParte2({super.key, required this.ctrAdicionarVagaPage});
@@ -20,6 +21,7 @@ class InserirDadosParte2 extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Cabecalho(),
               Observer(builder: (_) {
                 if (ctrAdicionarVagaPage.images.isEmpty) {
                   return Column(

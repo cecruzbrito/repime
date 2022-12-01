@@ -1,21 +1,32 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 import 'package:repime/app/blocs/vaga/db/vaga_db.dart';
 import 'package:repime/app/pages/controller/main_controller.dart';
+
+import '../../../../global_widgets/snack_bar_app/snack_bar_app.dart';
 part 'ctr_adicionar_vaga_page.g.dart';
 
 class CtrAdicionarVagaPage = _CtrAdicionarVagaPageBase with _$CtrAdicionarVagaPage;
 
 abstract class _CtrAdicionarVagaPageBase with Store {
   @observable
+  var keyScaffold = GlobalKey<ScaffoldState>();
+
+  @observable
   int indexPage = 0;
 
   @action
   void _setIndexPage(int value) => indexPage = value;
+
+  @observable
+  bool loading = false;
+
+  @action
+  void _setLoading(bool value) => loading = value;
 
   // PARTE 1
   @observable
@@ -68,6 +79,8 @@ abstract class _CtrAdicionarVagaPageBase with Store {
 
   @action
   onTapSalvar() async {
+    _setLoading(true);
+
     var imagesDecodes = <String>[];
     for (var i in images) {
       imagesDecodes.add(base64Encode(await i.readAsBytes()));
@@ -82,6 +95,11 @@ abstract class _CtrAdicionarVagaPageBase with Store {
 
     try {
       await VagaDB.setDados(v);
+      _setLoading(false);
+      ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+          SnackBarApp.show(text: 'Vaga adicionada com sucesso!', context: keyScaffold.currentContext!));
+      Modular.to.pop();
+      return;
     } on Exception catch (e) {
       print(e);
     }

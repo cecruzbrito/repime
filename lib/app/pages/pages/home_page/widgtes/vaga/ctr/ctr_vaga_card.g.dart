@@ -125,6 +125,17 @@ mixin _$CtrVagaCard on _CtrVagaCardBase, Store {
   }
 
   @override
+  void tapInVaga() {
+    final _$actionInfo = _$_CtrVagaCardBaseActionController.startAction(
+        name: '_CtrVagaCardBase.tapInVaga');
+    try {
+      return super.tapInVaga();
+    } finally {
+      _$_CtrVagaCardBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 vaga: ${vaga},

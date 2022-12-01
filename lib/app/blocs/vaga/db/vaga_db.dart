@@ -16,24 +16,25 @@ class VagaDB extends Vaga {
       required super.fotos,
       required super.mensalidade});
 
-  Future<void> getFotos({int limit = 0}) async {
+  Future<Vaga> getFotos({int limit = 0}) async {
     var result = limit > 0
         ? await ConnectionDataBase().make(QueryDataBase(
             commandSQL: 'SELECT * FROM foto_vaga as v WHERE v.id_vaga = @idVaga LIMIT @numLimit',
             arguments: {'numLimit': limit, 'idVaga': id}))
         : await ConnectionDataBase().make(QueryDataBase(
             commandSQL: 'SELECT * FROM foto_vaga as v WHERE v.id_vaga = @idVaga', arguments: {'idVaga': id}));
-    var fotos = <String>[];
+
+    fotos.clear();
     for (var r in result) {
       fotos.add(r['foto_vaga']!['foto']);
     }
-
-    fotos = fotos;
+    await _setFotosTemp();
+    return this;
   }
 
-  setFotosTemp() async {
+  Future<void> _setFotosTemp() async {
     for (var i = 0; i < fotos.length; i++) {
-      fotos[i] = await CacheUtility.setImage(base64Decode(fotos[0]), _pathFile(i), isTemp: true);
+      fotos[i] = await CacheUtility.setImage(base64Decode(fotos[i]), _pathFile(i), isTemp: true);
     }
   }
 

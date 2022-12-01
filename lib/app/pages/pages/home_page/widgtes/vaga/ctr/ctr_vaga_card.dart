@@ -1,7 +1,9 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:repime/app/blocs/residencia/residencia.dart';
 import 'package:repime/app/blocs/vaga/db/vaga_db.dart';
 
+import '../../../../../../../config/routes_app/routes_app.dart';
 import '../../../../../../blocs/vaga/vaga.dart';
 part 'ctr_vaga_card.g.dart';
 
@@ -43,7 +45,10 @@ abstract class _CtrVagaCardBase with Store {
   Future<void> _getFoto() async {
     _setloadingThumb(true);
     var v = VagaDB.toDB(vaga);
-    await v.getFotos(limit: 1);
+    vaga = await v.getFotos(limit: 1);
     _setloadingThumb(false);
   }
+
+  @action
+  void tapInVaga() => Modular.to.pushNamed(RouteApp.detalhesVaga.name, arguments: vaga);
 }
