@@ -230,9 +230,9 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
         await ResidenciaDB.inserirResidencia(residencia, locador);
       }
 
-      var l = await LocadorDB.makeLogin(ctrTextNome.text, ctrTextSenha.text);
-      await l!.setCache();
-      Modular.get<MainController>().setLocadorAtual(l);
+      var loc = await LocadorDB.makeLogin(ctrTextNome.text, ctrTextSenha.text);
+      await loc!.setCache();
+      Modular.get<MainController>().setLocadorAtual(loc);
       Modular.to.pop();
 
       ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(SnackBarApp.show(

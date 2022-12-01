@@ -1,8 +1,11 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:repime/app/blocs/vaga/db/vaga_db.dart';
-import 'package:repime/app/blocs/vaga/vaga.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:repime/app/blocs/locador/locador.dart';
+import 'package:repime/app/global_widgets/loading_app/loading_app.dart';
+import 'package:repime/app/pages/controller/main_controller.dart';
+import 'package:repime/app/pages/pages/home_page/ctr/ctr_home_page.dart';
+import 'package:repime/app/pages/pages/home_page/widgtes/vaga/vaga_card.dart';
 
 import 'widgtes/cabecalho.dart';
 
@@ -14,9 +17,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var ctr = CtrHomePage();
+
   @override
   void initState() {
     super.initState();
+    print(Modular.get<MainController>().locadorAtual == Locador.zero);
+    ctr.getVagas();
   }
 
   @override
@@ -26,11 +33,24 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: size.width * .05, vertical: size.height * .03),
-          child: Column(
-            children: [
-              Cabecalho(),
-            ],
-          ),
+          child: Observer(builder: (_) {
+            if (ctr.loading) {
+              return SizedBox(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Cabecalho(),
+                    Center(child: LoadingApp()),
+                  ],
+                ),
+              );
+            }
+            return SingleChildScrollView(
+              child: Column(
+                children: [Cabecalho(), for (var v in ctr.vagas) VagaCard(vaga: v)],
+              ),
+            );
+          }),
         ),
       ),
     );

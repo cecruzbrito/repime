@@ -9,4 +9,6 @@ class EnderecoDB extends Endereco {
   toJson() => {
         '': {'endereco': endereco, 'latitude': lat, 'longitude': log}
       };
+
+  factory EnderecoDB.toDB(Endereco e) => EnderecoDB(endereco: e.endereco, lat: e.lat, log: e.log);
 }

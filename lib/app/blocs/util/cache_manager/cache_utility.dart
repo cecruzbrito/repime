@@ -7,8 +7,10 @@ import 'package:path_provider/path_provider.dart';
 class CacheUtility {
   static Future<String> _pathAplicattion() async => (await getApplicationDocumentsDirectory()).path;
 
-  static Future<String> _realPath(String path, {String ext = 'json'}) async =>
-      '${await _pathAplicattion()}/$path.$ext';
+  static Future<String> _pathTempAplicattion() async => (await getTemporaryDirectory()).path;
+
+  static Future<String> _realPath(String path, {String ext = 'json', bool isTemp = false}) async =>
+      isTemp ? '${await _pathTempAplicattion()}/$path.$ext' : '${await _pathAplicattion()}/$path.$ext';
 
   static Future<void> setCache({required String pathName, required Map cache}) async {
     var jsonCache = jsonEncode(cache);
@@ -29,8 +31,8 @@ class CacheUtility {
     await file.delete();
   }
 
-  static Future<String> setImage(Uint8List bytes, String path) async {
-    var realP = await _realPath(path, ext: 'jpg');
+  static Future<String> setImage(Uint8List bytes, String path, {bool isTemp = false}) async {
+    var realP = await _realPath(path, ext: 'jpg', isTemp: isTemp);
     var file = File(realP);
     if (await file.exists()) await file.delete();
     await file.writeAsBytes(bytes);

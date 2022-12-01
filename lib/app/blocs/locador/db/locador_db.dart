@@ -71,6 +71,11 @@ class LocadorDB extends Locador {
         'residencia': residencia != null ? ResidenciaDB.toDB(residencia!).toJson() : null
       };
 
-  factory LocadorDB.fromCache(j) =>
-      LocadorDB(contato: j['contato'], id: j['id'], nome: j['nome'], senha: j['senha'], foto: j['foto']);
+  factory LocadorDB.fromCache(j) {
+    var loc =
+        LocadorDB(contato: j['contato'], id: j['id'], nome: j['nome'], senha: j['senha'], foto: j['foto']);
+
+    loc.setResidencia = ResidenciaDB.fromCache(j);
+    return loc;
+  }
 }

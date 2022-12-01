@@ -1,10 +1,12 @@
 import 'package:repime/app/blocs/cidade/db/cidade_db.dart';
 import 'package:repime/app/blocs/connection_database/connection_database.dart';
 import 'package:repime/app/blocs/residencia/blocs/endereco/db/endereco_db.dart';
+import 'package:repime/app/blocs/residencia/blocs/republica/republica.dart';
 import 'package:repime/app/blocs/residencia/residencia.dart';
 
 import '../../locador/locador.dart';
 import '../../util/enum_tipos_residencia/enum_tipo_residencia.dart';
+import '../../vaga/vaga.dart';
 
 class ResidenciaDB extends Residencia {
   ResidenciaDB({required super.cidade, required super.id, required super.tipo, required super.endereco});
@@ -19,43 +21,52 @@ class ResidenciaDB extends Residencia {
     return ResidenciaDB.fromJson(r[0]);
   }
 
-  static insercaoRepublica({required Locador locador, required Residencia residencia}) async =>
-      await ConnectionDataBase().make(QueryDataBase(commandSQL: """
-    SELECT  * FROM adiciona_locador_residencia( @nomeL, @senhaL, @contatoL, @fotoL, @idCidade, @tipoR, @lat, @long, @endr )
- """, arguments: {
-        'nomeL': locador.nome,
-        'senhaL': locador.senha,
-        'contatoL': locador.contato,
-        'fotoL': locador.foto,
-        'idCidade': residencia.cidade.id,
-        'tipoR': residencia.tipo.toNameDB(),
-        'lat': residencia.endereco.lat,
-        'long': residencia.endereco.log,
-        'endr': residencia.endereco.endereco,
-      }));
+  static Future<ResidenciaDB> getEspecificResidencia(Vaga v) async {
+    var result = await ConnectionDataBase().make(QueryDataBase(
+        commandSQL:
+            'SELECT r.id, r.tipo, r.id_locador, r.id_cidade, (endereco).latitude, (endereco).longitude , (endereco).endereco  ,c.* FROM residencia as r JOIN cidade as c ON c.id = r.id_cidade WHERE r.id = @idR',
+        arguments: {'idR': v.idResidencia}));
+    return ResidenciaDB.fromJson(result[0]);
+  }
 
   static Future<void> inserirResidencia(Residencia residencia, Locador locador) async {
     await ConnectionDataBase().make(QueryDataBase(
         commandSQL:
-            'INSERT INTO residencia (tipo, id_locador, id_cidade, endereco) VALUES (@tipo_r, @id_l, @id_c, ROW(@lat, @long, @end))',
+            'SELECT * FROM adiciona_locador_residencia( @nomeL, @senhaL, @contatoL, @fotoL, @idCidade, @lat, @long, @endr )',
         arguments: {
-          'tipo_r': residencia.tipo.toNameDB(),
-          'id_l': locador.id,
-          'id_c': residencia.cidade.id,
+          'nomeL': locador.nome,
+          'senhaL': locador.senha,
+          'contatoL': locador.contato,
+          'fotoL': locador.foto,
+          'idCidade': residencia.cidade.id,
           'lat': residencia.endereco.lat,
           'long': residencia.endereco.lat,
-          'end': residencia.endereco.endereco
+          'endr': residencia.endereco.endereco
         }));
   }
 
   factory ResidenciaDB.fromJson(j) => ResidenciaDB(
-      cidade: CidadeDB.fromJson(j),
       id: j['residencia']['id'],
       tipo: EnumTiposResidencia.fromJson(j['residencia']),
+      cidade: CidadeDB.fromJson(j),
       endereco: EnderecoDB.fromJson(j));
 
+  factory ResidenciaDB.fromCache(j) {
+    var x = j['residencia']['residencia']['cidade'];
+    return ResidenciaDB(
+        id: j['residencia']['residencia']['id'],
+        tipo: EnumTiposResidencia.fromJson(j['residencia']),
+        cidade: CidadeDB.fromJson(x),
+        endereco: EnderecoDB.fromJson(j['residencia']['residencia']['']));
+  }
+
   toJson() => {
-        'residencia': {'id': id, 'tipo': tipo.toJson(), 'cidade': CidadeDB.toDB(cidade).toJson()}
+        'residencia': {
+          'id': id,
+          'tipo': tipo.toJson(),
+          'cidade': CidadeDB.toDB(cidade).toJson(),
+          '': EnderecoDB.toDB(endereco).toJson()
+        }
       };
 
   static ResidenciaDB toDB(Residencia r) =>

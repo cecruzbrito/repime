@@ -13,18 +13,6 @@ class RepublicaDB extends Republica {
       required super.nome,
       required super.isTrote});
 
-  static inserirRepublica(Republica republica) async {
-    await ConnectionDataBase().make(QueryDataBase(
-        commandSQL:
-            'INSERT INTO republica (id_residencia, nome, trotes, fundacao) VALUES (@id, @nome_r, @trotes_r, @fundacao_r)',
-        arguments: {
-          'id': republica.id,
-          'nome_r': republica.nome,
-          'trotes_r': republica.isTrote,
-          'fundacao_r': republica.dateFundacao
-        }));
-  }
-
   static insercaoRepublica({required Locador locador, required Republica republica}) async =>
       await ConnectionDataBase().make(QueryDataBase(commandSQL: """
     SELECT  *  FROM adiciona_locador_residencia_republica( @nomeL, @senhaL, @contatoL, @fotoL, @idCidade, @tipoR, @lat, @long, @endR,@nomeR, @trotesR, @fund );

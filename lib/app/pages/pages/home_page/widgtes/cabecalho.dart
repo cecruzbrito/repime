@@ -57,10 +57,6 @@ class Cabecalho extends StatelessWidget {
             ),
             SizedBox(height: size.height * .01),
             Divider(),
-            Observer(builder: (_) {
-              if (Modular.get<MainController>().locadorAtual.foto == null) return Container();
-              return Image.file(File(Modular.get<MainController>().locadorAtual.foto!));
-            })
           ],
         ),
       ],
