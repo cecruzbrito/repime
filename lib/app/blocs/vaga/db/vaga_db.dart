@@ -21,6 +21,14 @@ class VagaDB extends Vaga {
       required super.mensalidade});
 
   Future<Vaga> getFotos({int limit = 0}) async {
+    var cacheTemp = await CacheUtility.getImageTemp(_pathFile(0));
+
+    if (limit == 0 && cacheTemp != null) {
+      fotos.clear();
+      fotos[0] = cacheTemp;
+      return this;
+    }
+
     var result = limit > 0
         ? await ConnectionDataBase().make(QueryDataBase(
             commandSQL: 'SELECT * FROM foto_vaga as v WHERE v.id_vaga = @idVaga LIMIT @numLimit',

@@ -16,46 +16,49 @@ class Cabecalho extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ButtonIconApp(
-              icon: Icons.person,
-              onPressed: () => Modular.to.pushNamed(RouteApp.registrarLocadorPage.name),
-              sizeIcon: size.height * .03,
-              isAlternative: true,
-            ),
-            ButtonIconApp(
-              icon: Icons.add,
-              colorIcon: Colors.white,
-              onPressed: () => Modular.to.pushNamed(RouteApp.adicionarVaga.name),
-              sizeIcon: size.height * .03,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: size.height * .04,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Cidade',
-              style: TextStyle(fontSize: size.height * .015, color: Colors.grey),
-            ),
-            SizedBox(height: size.height * .01),
-            Text(
-              _locatario.cidade.nome,
-              style:
-                  TextStyle(fontSize: size.height * .035, fontWeight: FontWeight.bold, color: Colors.black),
-            ),
-            SizedBox(height: size.height * .01),
-            const Divider(),
-          ],
-        ),
-      ],
+    return Container(
+      margin: EdgeInsets.only(top: size.height * .03),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ButtonIconApp(
+                icon: Icons.person,
+                onPressed: () => Modular.to.pushNamed(RouteApp.registrarLocadorPage.name),
+                sizeIcon: size.height * .03,
+                isAlternative: true,
+              ),
+              ButtonIconApp(
+                icon: Icons.add,
+                colorIcon: Colors.white,
+                onPressed: () => Modular.to.pushNamed(RouteApp.adicionarVaga.name),
+                sizeIcon: size.height * .03,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: size.height * .04,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Cidade',
+                style: TextStyle(fontSize: size.height * .015, color: Colors.grey),
+              ),
+              SizedBox(height: size.height * .01),
+              Text(
+                _locatario.cidade.nome,
+                style:
+                    TextStyle(fontSize: size.height * .035, fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+              SizedBox(height: size.height * .01),
+              const Divider(),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

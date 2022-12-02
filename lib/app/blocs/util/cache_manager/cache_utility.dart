@@ -34,8 +34,14 @@ class CacheUtility {
   static Future<String> setImage(Uint8List bytes, String path, {bool isTemp = false}) async {
     var realP = await _realPath(path, ext: 'jpg', isTemp: isTemp);
     var file = File(realP);
-    if (await file.exists()) await file.delete();
+    if (await file.exists() && !isTemp) await file.delete();
     await file.writeAsBytes(bytes);
+    return file.path;
+  }
+
+  static Future<String?> getImageTemp(String path) async {
+    var file = File(await _realPath(path, ext: 'jpg', isTemp: true));
+    if (!await file.exists()) return null;
     return file.path;
   }
 }

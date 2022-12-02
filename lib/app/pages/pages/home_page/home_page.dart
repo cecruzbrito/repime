@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: size.width * .05, vertical: size.height * .03),
+        padding: EdgeInsets.symmetric(horizontal: size.width * .05),
         child: Observer(builder: (_) {
           if (ctr.loading) {
             return SizedBox(
@@ -47,7 +47,11 @@ class _HomePageState extends State<HomePage> {
                 Cabecalho(),
                 Filtros(ctr: ctr),
                 SizedBox(height: size.height * .03),
-                for (var v in ctr.vagas) VagaCard(vaga: v)
+                Observer(builder: (_) {
+                  return Column(
+                    children: [for (var v in ctr.vagas) VagaCard(vaga: v)],
+                  );
+                })
               ],
             ),
           );
