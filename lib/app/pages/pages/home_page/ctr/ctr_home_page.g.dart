@@ -41,6 +41,22 @@ mixin _$CtrHomePage on _CtrHomePageBase, Store {
     });
   }
 
+  late final _$_allVagasAtom =
+      Atom(name: '_CtrHomePageBase._allVagas', context: context);
+
+  @override
+  ObservableList<Vaga> get _allVagas {
+    _$_allVagasAtom.reportRead();
+    return super._allVagas;
+  }
+
+  @override
+  set _allVagas(ObservableList<Vaga> value) {
+    _$_allVagasAtom.reportWrite(value, super._allVagas, () {
+      super._allVagas = value;
+    });
+  }
+
   late final _$getVagasAsyncAction =
       AsyncAction('_CtrHomePageBase.getVagas', context: context);
 

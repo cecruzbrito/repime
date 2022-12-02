@@ -103,40 +103,26 @@ class _VagaCardState extends State<VagaCard> {
                               color: Colors.black, fontSize: _size.height * .03, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Observer(builder: (_) {
-                        if (!ctrVaga.loadingResidencia) {
-                          return Flexible(
-                            child: Text(
-                              ctrVaga.dadosResidencia!.endereco.endereco,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: Colors.black26,
-                                fontSize: _size.height * .013,
-                              ),
-                            ),
-                          );
-                        }
-                        return SkeletonLine(
-                          style: SkeletonLineStyle(height: _size.height * .02, width: _size.width * .06),
-                        );
-                      })
+                      Flexible(
+                        child: Text(
+                          ctrVaga.vaga.residencia.endereco.endereco,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.black26,
+                            fontSize: _size.height * .013,
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   SizedBox(
                     height: _size.height * .01,
                   ),
-                  Observer(builder: (_) {
-                    if (ctrVaga.loadingResidencia) {
-                      return SkeletonLine(
-                        style: SkeletonLineStyle(height: _size.height * .02, width: _size.width * .06),
-                      );
-                    }
-                    return Text(
-                      '${ctrVaga.dadosResidencia!.tipo}',
-                      style: TextStyle(color: Colors.black, fontSize: _size.height * .015),
-                    );
-                  }),
+                  Text(
+                    '${ctrVaga.vaga.residencia.tipo}',
+                    style: TextStyle(color: Colors.black, fontSize: _size.height * .015),
+                  )
                 ],
               )
             ],

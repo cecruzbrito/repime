@@ -2,6 +2,7 @@ import 'package:repime/app/blocs/connection_database/connection_database.dart';
 import 'package:repime/app/blocs/residencia/blocs/republica/republica.dart';
 
 import '../../../../locador/locador.dart';
+import '../../../residencia.dart';
 
 class RepublicaDB extends Republica {
   RepublicaDB(
@@ -12,6 +13,23 @@ class RepublicaDB extends Republica {
       required super.dateFundacao,
       required super.nome,
       required super.isTrote});
+
+  static getRepublica(Residencia residencia) async {
+    var result = await ConnectionDataBase().make(QueryDataBase(
+        commandSQL: "  SELECT  nome, trotes, fundacao  FROM republica WHERE id_residencia = @idR   ",
+        arguments: {'idR': residencia.id}));
+
+    return RepublicaDB.repFromJson(result[0]['republica'], residencia);
+  }
+
+  factory RepublicaDB.repFromJson(j, Residencia res) => RepublicaDB(
+      cidade: res.cidade,
+      id: res.id,
+      tipo: res.tipo,
+      endereco: res.endereco,
+      dateFundacao: DateTime.parse('${j['fundacao']}'),
+      nome: j['nome'],
+      isTrote: j['trotes']);
 
   static insercaoRepublica({required Locador locador, required Republica republica}) async =>
       await ConnectionDataBase().make(QueryDataBase(commandSQL: """

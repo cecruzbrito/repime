@@ -2,6 +2,8 @@ enum EnumTiposResidencia {
   replublica,
   kitnet;
 
+  bool get isRepublica => this == replublica;
+
   @override
   String toString() {
     switch (this) {

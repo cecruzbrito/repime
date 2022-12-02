@@ -12,4 +12,8 @@ class Republica extends Residencia {
       required this.dateFundacao,
       required this.nome,
       required this.isTrote});
+
+  String get dateFormated => "${dateFundacao.day}/${dateFundacao.month}/${dateFundacao.year}";
+
+  String get nameTrote => isTrote ? 'É feito trotes!' : 'Não é feito trotes';
 }

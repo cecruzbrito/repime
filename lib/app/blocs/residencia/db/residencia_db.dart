@@ -1,3 +1,4 @@
+import 'package:repime/app/blocs/cidade/cidade.dart';
 import 'package:repime/app/blocs/cidade/db/cidade_db.dart';
 import 'package:repime/app/blocs/connection_database/connection_database.dart';
 import 'package:repime/app/blocs/residencia/blocs/endereco/db/endereco_db.dart';
@@ -11,7 +12,7 @@ import '../../vaga/vaga.dart';
 class ResidenciaDB extends Residencia {
   ResidenciaDB({required super.cidade, required super.id, required super.tipo, required super.endereco});
 
-  static getAll(Locador locador) async {
+  static Future<ResidenciaDB> getAll(Locador locador) async {
     var r = await ConnectionDataBase().make(
       QueryDataBase(
           commandSQL:
@@ -20,6 +21,8 @@ class ResidenciaDB extends Residencia {
     );
     return ResidenciaDB.fromJson(r[0]);
   }
+
+  static getResidencias() async {}
 
   static Future<ResidenciaDB> getEspecificResidencia(Vaga v) async {
     var result = await ConnectionDataBase().make(QueryDataBase(
@@ -44,6 +47,12 @@ class ResidenciaDB extends Residencia {
           'endr': residencia.endereco.endereco
         }));
   }
+
+  factory ResidenciaDB.fromJsonHome(j) => ResidenciaDB(
+      id: j['residencia']['id'],
+      tipo: EnumTiposResidencia.fromJson(j['residencia']),
+      cidade: Cidade(id: 00, nome: 'nome', uf: 'uf', pais: 'pais'),
+      endereco: EnderecoDB.fromJson(j));
 
   factory ResidenciaDB.fromJson(j) => ResidenciaDB(
       id: j['residencia']['id'],

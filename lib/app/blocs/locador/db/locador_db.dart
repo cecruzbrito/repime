@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:repime/app/blocs/connection_database/connection_database.dart';
 import 'package:repime/app/blocs/locador/locador.dart';
@@ -42,6 +40,14 @@ class LocadorDB extends Locador {
   static LocadorDB fromLogin(j, {required String senhaDecodificada}) {
     return LocadorDB(
         contato: j['contato'], id: j['id'], nome: j['nome'], senha: senhaDecodificada, foto: j['foto']);
+  }
+
+  static getLocadorFromResidencia(int idResidencia) async {
+    var result = await ConnectionDataBase().make(QueryDataBase(
+        commandSQL:
+            "SELECT l.id, l.nome, l.contato FROM locador as l JOIN residencia as r ON l.id = r.id_locador WHERE r.id = @idR",
+        arguments: {'idR': idResidencia}));
+    return fromLogin(result[0]['locador'], senhaDecodificada: '');
   }
 
   static const String _pathFile = 'locador_json';

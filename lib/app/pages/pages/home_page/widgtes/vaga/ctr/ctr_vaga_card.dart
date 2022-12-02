@@ -5,6 +5,7 @@ import 'package:repime/app/blocs/vaga/db/vaga_db.dart';
 
 import '../../../../../../../config/routes_app/routes_app.dart';
 import '../../../../../../blocs/vaga/vaga.dart';
+import '../../../../detalhes_vaga_page/ctr/ctr_detalhes_vaga.dart';
 part 'ctr_vaga_card.g.dart';
 
 class CtrVagaCard = _CtrVagaCardBase with _$CtrVagaCard;
@@ -16,30 +17,13 @@ abstract class _CtrVagaCardBase with Store {
   _CtrVagaCardBase(this.vaga);
 
   @observable
-  bool loadingResidencia = true;
-
-  @action
-  void _setLoading(bool value) => loadingResidencia = value;
-
-  @observable
   bool loadingThumb = true;
 
   @action
   void _setloadingThumb(bool value) => loadingThumb = value;
 
-  @observable
-  Residencia? dadosResidencia;
-
   @action
-  void _setResidencia(Residencia r) => dadosResidencia = r;
-
-  @action
-  getDetalhesVaga() async {
-    _setLoading(true);
-    _setResidencia(await VagaDB.toDB(vaga).getDadosResidencia());
-    _setLoading(false);
-    await _getFoto();
-  }
+  getDetalhesVaga() async => await _getFoto();
 
   @action
   Future<void> _getFoto() async {
@@ -50,5 +34,8 @@ abstract class _CtrVagaCardBase with Store {
   }
 
   @action
-  void tapInVaga() => Modular.to.pushNamed(RouteApp.detalhesVaga.name, arguments: vaga);
+  void tapInVaga() {
+    Modular.get<CtrDetalhesVaga>().setVaga(vaga);
+    Modular.to.pushNamed(RouteApp.detalhesVaga.name);
+  }
 }

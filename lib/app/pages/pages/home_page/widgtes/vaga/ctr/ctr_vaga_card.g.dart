@@ -24,22 +24,6 @@ mixin _$CtrVagaCard on _CtrVagaCardBase, Store {
     });
   }
 
-  late final _$loadingResidenciaAtom =
-      Atom(name: '_CtrVagaCardBase.loadingResidencia', context: context);
-
-  @override
-  bool get loadingResidencia {
-    _$loadingResidenciaAtom.reportRead();
-    return super.loadingResidencia;
-  }
-
-  @override
-  set loadingResidencia(bool value) {
-    _$loadingResidenciaAtom.reportWrite(value, super.loadingResidencia, () {
-      super.loadingResidencia = value;
-    });
-  }
-
   late final _$loadingThumbAtom =
       Atom(name: '_CtrVagaCardBase.loadingThumb', context: context);
 
@@ -53,22 +37,6 @@ mixin _$CtrVagaCard on _CtrVagaCardBase, Store {
   set loadingThumb(bool value) {
     _$loadingThumbAtom.reportWrite(value, super.loadingThumb, () {
       super.loadingThumb = value;
-    });
-  }
-
-  late final _$dadosResidenciaAtom =
-      Atom(name: '_CtrVagaCardBase.dadosResidencia', context: context);
-
-  @override
-  Residencia? get dadosResidencia {
-    _$dadosResidenciaAtom.reportRead();
-    return super.dadosResidencia;
-  }
-
-  @override
-  set dadosResidencia(Residencia? value) {
-    _$dadosResidenciaAtom.reportWrite(value, super.dadosResidencia, () {
-      super.dadosResidencia = value;
     });
   }
 
@@ -92,33 +60,11 @@ mixin _$CtrVagaCard on _CtrVagaCardBase, Store {
       ActionController(name: '_CtrVagaCardBase', context: context);
 
   @override
-  void _setLoading(bool value) {
-    final _$actionInfo = _$_CtrVagaCardBaseActionController.startAction(
-        name: '_CtrVagaCardBase._setLoading');
-    try {
-      return super._setLoading(value);
-    } finally {
-      _$_CtrVagaCardBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void _setloadingThumb(bool value) {
     final _$actionInfo = _$_CtrVagaCardBaseActionController.startAction(
         name: '_CtrVagaCardBase._setloadingThumb');
     try {
       return super._setloadingThumb(value);
-    } finally {
-      _$_CtrVagaCardBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void _setResidencia(Residencia r) {
-    final _$actionInfo = _$_CtrVagaCardBaseActionController.startAction(
-        name: '_CtrVagaCardBase._setResidencia');
-    try {
-      return super._setResidencia(r);
     } finally {
       _$_CtrVagaCardBaseActionController.endAction(_$actionInfo);
     }
@@ -139,9 +85,7 @@ mixin _$CtrVagaCard on _CtrVagaCardBase, Store {
   String toString() {
     return '''
 vaga: ${vaga},
-loadingResidencia: ${loadingResidencia},
-loadingThumb: ${loadingThumb},
-dadosResidencia: ${dadosResidencia}
+loadingThumb: ${loadingThumb}
     ''';
   }
 }

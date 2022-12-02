@@ -18,11 +18,16 @@ abstract class _CtrHomePageBase with Store {
   @observable
   var vagas = <Vaga>[].asObservable();
 
+  @observable
+  var _allVagas = <Vaga>[].asObservable();
+
   @action
   Future<void> getVagas() async {
     var cid = Modular.get<MainController>().locatarioAtual.cidade;
     _setLoading(true);
     vagas = (await VagaDB.getVagasPerCidade(cid)).asObservable();
+    _allVagas = vagas;
+    vagas.sort((a, b) => a.date.compareTo(b.date));
     _setLoading(false);
   }
 }

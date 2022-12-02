@@ -24,6 +24,7 @@ class FieldApp extends StatelessWidget {
       onChanged: settingsFieldApp.onChange,
       cursorColor: _colorEnable,
       maxLength: settingsFieldApp.max,
+      enabled: settingsFieldApp.isEnable,
       keyboardType: settingsFieldApp.isDate
           ? TextInputType.datetime
           : settingsFieldApp.isMultLine

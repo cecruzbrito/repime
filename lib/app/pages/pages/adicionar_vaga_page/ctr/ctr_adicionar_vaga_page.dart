@@ -86,15 +86,13 @@ abstract class _CtrAdicionarVagaPageBase with Store {
       imagesDecodes.add(base64Encode(await i.readAsBytes()));
     }
     var locador = Modular.get<MainController>().locadorAtual;
-    var v = VagaDB(
-        id: 0,
-        idResidencia: locador.residencia!.id,
-        informacoes: ctrInformacoesAdicionais.text,
-        fotos: imagesDecodes,
-        mensalidade: ctrValorMensalidade.text);
 
     try {
-      await VagaDB.setDados(v);
+      await VagaDB.setDados(
+          fotos: imagesDecodes,
+          idResidencia: locador.residencia!.id,
+          info: ctrInformacoesAdicionais.text,
+          mensalidade: ctrValorMensalidade.text);
       _setLoading(false);
       ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
           SnackBarApp.show(text: 'Vaga adicionada com sucesso!', context: keyScaffold.currentContext!));

@@ -6,6 +6,7 @@ class ButtonIconApp extends StatelessWidget {
       required this.icon,
       required this.onPressed,
       required this.sizeIcon,
+      this.colorIcon = Colors.black,
       this.isAlternative = false,
       this.colorButton = Colors.black});
   final IconData icon;
@@ -13,6 +14,7 @@ class ButtonIconApp extends StatelessWidget {
   final double sizeIcon;
   final Color colorButton;
   final bool isAlternative;
+  final Color colorIcon;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -24,7 +26,7 @@ class ButtonIconApp extends StatelessWidget {
                 ? BorderSide.none
                 : BorderSide(
                     width: size.width * .001,
-                    color: Colors.black26,
+                    color: colorButton,
                   ),
             borderRadius: BorderRadius.all(Radius.circular(size.width * .03))),
         elevation: isAlternative ? 0 : 8,
@@ -35,7 +37,7 @@ class ButtonIconApp extends StatelessWidget {
       child: Icon(
         icon,
         size: sizeIcon,
-        color: isAlternative ? Colors.black : Colors.white,
+        color: colorIcon,
       ),
     );
   }

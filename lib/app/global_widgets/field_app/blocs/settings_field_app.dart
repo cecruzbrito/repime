@@ -12,6 +12,7 @@ class SettingsFieldApp {
   bool isMultLine;
   bool? isAlternative;
   bool isDate;
+  bool isEnable;
 
   SettingsFieldApp(
       {this.hintText,
@@ -19,6 +20,7 @@ class SettingsFieldApp {
       this.labelText,
       this.onChange,
       this.onTap,
+      this.isEnable = true,
       this.ctr,
       this.validator,
       this.isMultLine = false,
