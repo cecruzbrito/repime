@@ -24,6 +24,7 @@ class _DetalhesVagaPageState extends State<DetalhesVagaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: ctr.keyScaffold,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,

@@ -8,12 +8,16 @@ import 'package:repime/app/pages/pages/home_page/blocs/item/item_filter.dart';
 import 'package:repime/config/routes_app/routes_app.dart';
 
 import '../../../../blocs/vaga/vaga.dart';
+import '../../../../global_widgets/snack_bar_app/snack_bar_app.dart';
 import '../../perfil_locador_page/ctr/perfil_locador_ctr.dart';
 part 'ctr_home_page.g.dart';
 
 class CtrHomePage = _CtrHomePageBase with _$CtrHomePage;
 
 abstract class _CtrHomePageBase with Store {
+  @observable
+  var keyScaffold = GlobalKey<ScaffoldState>();
+
   @observable
   var filtros = ObservableList<ItemFilter>();
 
@@ -77,9 +81,6 @@ abstract class _CtrHomePageBase with Store {
     if (filtros[3].isSelected) {
       aux.sort(((a, b) => double.parse(a.mensalidade).compareTo(double.parse(b.mensalidade))));
     }
-    for (var e in aux) {
-      print(e.residencia.endereco.endereco);
-    }
     return aux;
   }
 
@@ -103,7 +104,12 @@ abstract class _CtrHomePageBase with Store {
   Future<void> getVagas() async {
     var c = Modular.get<MainController>().locatarioAtual.cidade;
     _setLoading(true);
-    _allVagas = (await VagaDB.getVagasPerCidade(c)).asObservable();
+    try {
+      _allVagas = (await VagaDB.getVagasPerCidade(c)).asObservable();
+    } on Exception catch (e) {
+      ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+          SnackBarApp.show(text: 'Ocorreu um erro. Tente novamente.', context: keyScaffold.currentContext!));
+    }
     _allVagas.sort((a, b) => a.date.compareTo(b.date));
     _setFiltros();
     _setLoading(false);

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:repime/app/blocs/cidade/cidade.dart';
@@ -9,11 +9,15 @@ import 'package:repime/app/pages/controller/main_controller.dart';
 
 import '../../../../../config/routes_app/routes_app.dart';
 import '../../../../blocs/universidade/db/universidade_db.dart';
+import '../../../../global_widgets/snack_bar_app/snack_bar_app.dart';
 part 'ctr_first_page.g.dart';
 
 class CtrFirstPage = _CtrFirstPageBase with _$CtrFirstPage;
 
 abstract class _CtrFirstPageBase with Store {
+  @observable
+  var keyScaffold = GlobalKey<ScaffoldState>();
+
   @observable
   bool loading = false;
 
@@ -26,7 +30,14 @@ abstract class _CtrFirstPageBase with Store {
   @action
   Future<void> makeGetCidades() async {
     setLoading(true);
-    cidades = await CidadeDB.getCidadesFromDataBase();
+
+    try {
+      cidades = await CidadeDB.getCidadesFromDataBase();
+    } on Exception catch (_) {
+      ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+          SnackBarApp.show(text: 'Ocorreu um erro. Tente novamente.', context: keyScaffold.currentContext!));
+    }
+
     setLoading(false);
   }
 
@@ -45,8 +56,15 @@ abstract class _CtrFirstPageBase with Store {
   @action
   Future<void> _makeGetUniversidade(Cidade cidade) async {
     setLoading(true);
-    universidades = (await UniversidadeDB.getUniversidades(cidade)).asObservable();
-    _setShowUniversidadeFieldSet(true);
+
+    try {
+      universidades = (await UniversidadeDB.getUniversidades(cidade)).asObservable();
+      _setShowUniversidadeFieldSet(true);
+    } on Exception catch (e) {
+      ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+          SnackBarApp.show(text: 'Ocorreu um erro. Tente novamente.', context: keyScaffold.currentContext!));
+    }
+
     setLoading(false);
   }
 

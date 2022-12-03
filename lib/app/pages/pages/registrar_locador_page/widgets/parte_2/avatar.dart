@@ -48,6 +48,7 @@ class Avatar extends StatelessWidget {
               icon: Icons.add_a_photo,
               onPressed: ctrRegistrarLocadorPage.getImage,
               sizeIcon: maxH * .15,
+              colorIcon: Colors.white,
             ),
             Observer(builder: (_) {
               if (ctrRegistrarLocadorPage.image == null) return Container();

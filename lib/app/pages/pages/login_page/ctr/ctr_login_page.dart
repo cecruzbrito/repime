@@ -30,15 +30,22 @@ abstract class _CtrLoginPageBase with Store {
 
   onTapLogin() async {
     _setLoading(true);
-    var loc = await LocadorDB.makeLogin(ctrUsuario.text, ctrSenha.text);
-    if (loc == null) {
-      _setLoading(false);
-      return ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
-          SnackBarApp.show(text: 'Nome de Usuario/Senha incorretos', context: keyScaffold.currentContext!));
+
+    try {
+      var loc = await LocadorDB.makeLogin(ctrUsuario.text, ctrSenha.text);
+      if (loc == null) {
+        _setLoading(false);
+        return ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+            SnackBarApp.show(text: 'Nome de Usuario/Senha incorretos', context: keyScaffold.currentContext!));
+      }
+      await loc.setCache();
+      Modular.get<MainController>().setLocadorAtual(loc);
+      Modular.to.pushNamed(RouteApp.homePage.name);
+    } on Exception catch (e) {
+      ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+          SnackBarApp.show(text: 'Ocorreu um erro. Tente novamente.', context: keyScaffold.currentContext!));
     }
-    await loc.setCache();
-    Modular.get<MainController>().setLocadorAtual(loc);
-    Modular.to.pushNamed(RouteApp.homePage.name);
+
     _setLoading(false);
   }
 

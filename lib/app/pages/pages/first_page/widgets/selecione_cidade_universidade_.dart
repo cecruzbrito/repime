@@ -20,6 +20,9 @@ class SelecioneCidadeUniversidade extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Observer(builder: (_) {
+            if (ctrFirstPage.cidades.isEmpty) {
+              return Container();
+            }
             return DropDrownApp<Cidade>(
                 itens: ctrFirstPage.cidades,
                 settings: SettingsFieldApp(
@@ -33,6 +36,9 @@ class SelecioneCidadeUniversidade extends StatelessWidget {
           }),
           SizedBox(height: size.height * .02),
           Observer(builder: (_) {
+            if (ctrFirstPage.universidades.isEmpty) {
+              return Container();
+            }
             if (!ctrFirstPage.isShowUniversidadeField) {
               return Container();
             }

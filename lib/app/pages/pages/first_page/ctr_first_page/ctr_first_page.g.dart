@@ -24,6 +24,22 @@ mixin _$CtrFirstPage on _CtrFirstPageBase, Store {
               name: '_CtrFirstPageBase.isShowButtonContinue'))
       .value;
 
+  late final _$keyScaffoldAtom =
+      Atom(name: '_CtrFirstPageBase.keyScaffold', context: context);
+
+  @override
+  GlobalKey<ScaffoldState> get keyScaffold {
+    _$keyScaffoldAtom.reportRead();
+    return super.keyScaffold;
+  }
+
+  @override
+  set keyScaffold(GlobalKey<ScaffoldState> value) {
+    _$keyScaffoldAtom.reportWrite(value, super.keyScaffold, () {
+      super.keyScaffold = value;
+    });
+  }
+
   late final _$loadingAtom =
       Atom(name: '_CtrFirstPageBase.loading', context: context);
 
@@ -300,6 +316,7 @@ mixin _$CtrFirstPage on _CtrFirstPageBase, Store {
   @override
   String toString() {
     return '''
+keyScaffold: ${keyScaffold},
 loading: ${loading},
 cidades: ${cidades},
 universidades: ${universidades},

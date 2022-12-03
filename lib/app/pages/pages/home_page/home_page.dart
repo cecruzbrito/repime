@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      key: ctr.keyScaffold,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size.width * .05),
         child: Observer(builder: (_) {
@@ -41,18 +42,22 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                Cabecalho(ctr: ctr),
-                Filtros(ctr: ctr),
-                SizedBox(height: size.height * .03),
-                Observer(builder: (_) {
-                  return Column(
-                    children: [for (var v in ctr.vagas) VagaCard(vaga: v)],
-                  );
-                })
-              ],
+          return RefreshIndicator(
+            onRefresh: ctr.getVagas,
+            color: Colors.black,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Cabecalho(ctr: ctr),
+                  Filtros(ctr: ctr),
+                  SizedBox(height: size.height * .03),
+                  Observer(builder: (_) {
+                    return Column(
+                      children: [for (var v in ctr.vagas) VagaCard(vaga: v)],
+                    );
+                  })
+                ],
+              ),
             ),
           );
         }),

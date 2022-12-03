@@ -99,8 +99,10 @@ abstract class _CtrAdicionarVagaPageBase with Store {
       Modular.to.pop();
       return;
     } on Exception catch (e) {
-      print(e);
+      ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+          SnackBarApp.show(text: 'Ocorreu um erro. Tente novamente.', context: keyScaffold.currentContext!));
     }
+    _setLoading(false);
   }
 
   @action

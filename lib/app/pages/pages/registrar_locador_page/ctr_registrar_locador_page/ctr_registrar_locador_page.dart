@@ -78,12 +78,20 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
   onTapContinue() async {
     if (!(formFieldParte1.currentState!.validate())) return;
     _setLoading(true);
-    var existsUser = await LocadorDB.existsUsername(ctrTextNome.text);
-    _setLoading(false);
-    if (existsUser) {
-      return ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
-          SnackBarApp.show(text: 'Nome de usuário já está em uso', context: keyScaffold.currentContext!));
+
+    try {
+      var existsUser = await LocadorDB.existsUsername(ctrTextNome.text);
+      if (existsUser) {
+        return ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+            SnackBarApp.show(text: 'Nome de usuário já está em uso', context: keyScaffold.currentContext!));
+      }
+    } on Exception catch (e) {
+      ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+          SnackBarApp.show(text: 'Ocorreu um erro. Tente mais tarde.', context: keyScaffold.currentContext!));
+      return _setLoading(false);
     }
+
+    _setLoading(false);
     _setIndex(1);
   }
 
@@ -139,6 +147,12 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
       tiposResidencia.firstWhere((e) => e.isSelected).tipo == EnumTiposResidencia.replublica;
 
   // PARTE 4
+
+  @observable
+  var isTrotes = false;
+
+  @action
+  void setTrotes() => isTrotes = !isTrotes;
 
   @observable
   var formFieldParte4 = GlobalKey<FormState>();
@@ -226,7 +240,7 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
             endereco: residencia.endereco,
             dateFundacao: date,
             nome: ctrNomeRepublica.text,
-            isTrote: true);
+            isTrote: isTrotes);
         await RepublicaDB.insercaoRepublica(locador: locador, republica: rep);
       } else {
         await ResidenciaDB.inserirResidencia(residencia, locador);
@@ -241,8 +255,9 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
           text: 'Nome de usuário e residência cadastradas!', context: keyScaffold.currentContext!));
       _setLoading(false);
     } on Exception catch (e) {
-      print(e);
-      _setLoading(false);
+      ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(
+          SnackBarApp.show(text: 'Ocorreu um erro. Tente mais tarde.', context: keyScaffold.currentContext!));
+      return _setLoading(false);
     }
   }
 

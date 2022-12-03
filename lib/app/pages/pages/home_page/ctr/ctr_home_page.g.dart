@@ -17,6 +17,22 @@ mixin _$CtrHomePage on _CtrHomePageBase, Store {
               name: '_CtrHomePageBase.vagas'))
           .value;
 
+  late final _$keyScaffoldAtom =
+      Atom(name: '_CtrHomePageBase.keyScaffold', context: context);
+
+  @override
+  GlobalKey<ScaffoldState> get keyScaffold {
+    _$keyScaffoldAtom.reportRead();
+    return super.keyScaffold;
+  }
+
+  @override
+  set keyScaffold(GlobalKey<ScaffoldState> value) {
+    _$keyScaffoldAtom.reportWrite(value, super.keyScaffold, () {
+      super.keyScaffold = value;
+    });
+  }
+
   late final _$filtrosAtom =
       Atom(name: '_CtrHomePageBase.filtros', context: context);
 
@@ -156,6 +172,7 @@ mixin _$CtrHomePage on _CtrHomePageBase, Store {
   @override
   String toString() {
     return '''
+keyScaffold: ${keyScaffold},
 filtros: ${filtros},
 loading: ${loading},
 vagas: ${vagas}

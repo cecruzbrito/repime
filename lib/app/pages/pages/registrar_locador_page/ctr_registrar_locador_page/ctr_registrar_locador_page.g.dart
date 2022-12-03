@@ -191,6 +191,22 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
     });
   }
 
+  late final _$isTrotesAtom =
+      Atom(name: '_CtrRegistrarLocadorPageBase.isTrotes', context: context);
+
+  @override
+  bool get isTrotes {
+    _$isTrotesAtom.reportRead();
+    return super.isTrotes;
+  }
+
+  @override
+  set isTrotes(bool value) {
+    _$isTrotesAtom.reportWrite(value, super.isTrotes, () {
+      super.isTrotes = value;
+    });
+  }
+
   late final _$formFieldParte4Atom = Atom(
       name: '_CtrRegistrarLocadorPageBase.formFieldParte4', context: context);
 
@@ -429,6 +445,17 @@ mixin _$CtrRegistrarLocadorPage on _CtrRegistrarLocadorPageBase, Store {
   }
 
   @override
+  void setTrotes() {
+    final _$actionInfo = _$_CtrRegistrarLocadorPageBaseActionController
+        .startAction(name: '_CtrRegistrarLocadorPageBase.setTrotes');
+    try {
+      return super.setTrotes();
+    } finally {
+      _$_CtrRegistrarLocadorPageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String? validatorNomeRepublica(String? value) {
     final _$actionInfo =
         _$_CtrRegistrarLocadorPageBaseActionController.startAction(
@@ -509,6 +536,7 @@ obscureSenha: ${obscureSenha},
 ctrTextContato: ${ctrTextContato},
 image: ${image},
 tiposResidencia: ${tiposResidencia},
+isTrotes: ${isTrotes},
 formFieldParte4: ${formFieldParte4},
 ctrNomeRepublica: ${ctrNomeRepublica},
 ctrEnderecoResidencia: ${ctrEnderecoResidencia},

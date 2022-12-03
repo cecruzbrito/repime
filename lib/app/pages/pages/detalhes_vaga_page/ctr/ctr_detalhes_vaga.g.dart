@@ -9,6 +9,22 @@ part of 'ctr_detalhes_vaga.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$CtrDetalhesVaga on _CtrDetalhesVagaBase, Store {
+  late final _$keyScaffoldAtom =
+      Atom(name: '_CtrDetalhesVagaBase.keyScaffold', context: context);
+
+  @override
+  GlobalKey<ScaffoldState> get keyScaffold {
+    _$keyScaffoldAtom.reportRead();
+    return super.keyScaffold;
+  }
+
+  @override
+  set keyScaffold(GlobalKey<ScaffoldState> value) {
+    _$keyScaffoldAtom.reportWrite(value, super.keyScaffold, () {
+      super.keyScaffold = value;
+    });
+  }
+
   late final _$vagaAtom =
       Atom(name: '_CtrDetalhesVagaBase.vaga', context: context);
 
@@ -197,6 +213,7 @@ mixin _$CtrDetalhesVaga on _CtrDetalhesVagaBase, Store {
   @override
   String toString() {
     return '''
+keyScaffold: ${keyScaffold},
 vaga: ${vaga},
 indexFoto: ${indexFoto},
 ctrInfo: ${ctrInfo},

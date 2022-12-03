@@ -24,24 +24,29 @@ class _FirstPageState extends State<FirstPage> {
 
   @override
   Widget build(BuildContext context) {
-    var _size = MediaQuery.of(context).size;
-    return Scaffold(body: Observer(builder: (context) {
-      return ctr.loading
-          ? const LoadingApp()
-          : Padding(
-              padding: EdgeInsets.symmetric(horizontal: _size.width * .05, vertical: _size.height * .02),
-              child: Stack(
-                children: [
-                  Align(
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [const Cabecalho(), SelecioneCidadeUniversidade(ctrFirstPage: ctr)],
-                      )),
-                  Align(alignment: Alignment.bottomCenter, child: BotaoContinue(ctrFirstPage: ctr)),
-                ],
-              ),
-            );
-    }));
+    var size = MediaQuery.of(context).size;
+    return Scaffold(
+        key: ctr.keyScaffold,
+        body: Observer(builder: (context) {
+          return ctr.loading
+              ? const LoadingApp()
+              : Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * .05, vertical: size.height * .02),
+                  child: Stack(
+                    children: [
+                      Align(
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Cabecalho(isError: ctr.cidades.isEmpty),
+                              SelecioneCidadeUniversidade(ctrFirstPage: ctr)
+                            ],
+                          )),
+                      Align(alignment: Alignment.bottomCenter, child: BotaoContinue(ctrFirstPage: ctr)),
+                    ],
+                  ),
+                );
+        }));
   }
 }
