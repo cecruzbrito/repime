@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:repime/app/blocs/residencia/residencia.dart';
 import 'package:repime/app/blocs/vaga/db/vaga_db.dart';
 
 import '../../../../../../../config/routes_app/routes_app.dart';
@@ -24,6 +23,9 @@ abstract class _CtrVagaCardBase with Store {
 
   @action
   getDetalhesVaga() async => await _getFoto();
+
+  @action
+  void setVaga(Vaga v) => vaga = v;
 
   @action
   Future<void> _getFoto() async {

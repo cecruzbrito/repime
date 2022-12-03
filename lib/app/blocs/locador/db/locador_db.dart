@@ -51,6 +51,7 @@ class LocadorDB extends Locador {
   }
 
   static const String _pathFile = 'locador_json';
+  String get _pathImage => 'locador_image_$id';
 
   Future<void> setCache() async {
     foto = await _setCacheImage();
@@ -63,10 +64,18 @@ class LocadorDB extends Locador {
     return LocadorDB.fromCache(cache);
   }
 
+  Future<void> deleteCache() async {
+    await CacheUtility.deleteCache(_pathFile);
+    await CacheUtility.deleteImage(_pathImage);
+  }
+
   Future<String?> _setCacheImage() async {
     if (foto == null) return null;
-    return await CacheUtility.setImage(base64Decode(foto!), 'locador_image_$id');
+    return await CacheUtility.setImage(base64Decode(foto!), _pathImage);
   }
+
+  static LocadorDB toDB(Locador l) =>
+      LocadorDB(contato: l.contato, id: l.id, nome: l.nome, senha: l.senha, foto: l.foto);
 
   toJson() => {
         'id': id,

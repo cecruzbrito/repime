@@ -15,9 +15,7 @@ class VagaCard extends StatefulWidget {
 }
 
 class _VagaCardState extends State<VagaCard> {
-  Vaga get vaga => widget.vaga;
-
-  late final ctrVaga = CtrVagaCard(vaga);
+  late final ctrVaga = CtrVagaCard(widget.vaga);
 
   @override
   void initState() {
@@ -27,6 +25,8 @@ class _VagaCardState extends State<VagaCard> {
 
   @override
   Widget build(BuildContext context) {
+    ctrVaga.setVaga(widget.vaga);
+
     var _size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(bottom: _size.height * .04),
@@ -98,7 +98,7 @@ class _VagaCardState extends State<VagaCard> {
                     children: [
                       Flexible(
                         child: Text(
-                          vaga.mensalidadeFormatada,
+                          ctrVaga.vaga.mensalidadeFormatada,
                           style: TextStyle(
                               color: Colors.black, fontSize: _size.height * .03, fontWeight: FontWeight.bold),
                         ),
@@ -119,10 +119,11 @@ class _VagaCardState extends State<VagaCard> {
                   SizedBox(
                     height: _size.height * .01,
                   ),
-                  Text(
-                    '${ctrVaga.vaga.residencia.tipo}',
-                    style: TextStyle(color: Colors.black, fontSize: _size.height * .015),
-                  )
+                  Observer(
+                      builder: (_) => Text(
+                            '${ctrVaga.vaga.residencia.tipo}',
+                            style: TextStyle(color: Colors.black, fontSize: _size.height * .015),
+                          ))
                 ],
               )
             ],

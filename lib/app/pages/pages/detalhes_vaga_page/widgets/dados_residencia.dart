@@ -5,7 +5,6 @@ import 'package:repime/app/global_widgets/field_app/field_app.dart';
 import 'package:repime/app/pages/pages/detalhes_vaga_page/ctr/ctr_detalhes_vaga.dart';
 import 'package:skeletons/skeletons.dart';
 
-import '../../../../blocs/util/enum_images_app/enum_images_app.dart';
 import 'dados_republica.dart';
 
 class DadosResidencia extends StatelessWidget {
@@ -26,6 +25,7 @@ class DadosResidencia extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Flexible(
                     child: Column(

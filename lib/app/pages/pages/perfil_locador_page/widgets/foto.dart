@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../global_widgets/button_back_app/button_back_app.dart';
+import '../../../../global_widgets/button_icon/button_icon_app.dart';
 import '../../../controller/main_controller.dart';
 
 class Foto extends StatelessWidget {
@@ -30,9 +30,23 @@ class Foto extends StatelessWidget {
             fit: BoxFit.cover,
             height: size.height * .4,
             width: size.height,
+            errorBuilder: (___, __, _) => SizedBox(
+              height: size.height * .4,
+              width: size.height,
+            ),
           );
         }),
-        ButtonBackApp()
+        Padding(
+          padding: EdgeInsets.only(top: size.height * .03, left: size.width * .05),
+          child: ButtonIconApp(
+            colorButton: Colors.white,
+            colorIcon: Colors.white,
+            sizeIcon: size.height * .03,
+            isAlternative: true,
+            icon: Icons.arrow_back,
+            onPressed: Modular.to.pop,
+          ),
+        )
       ],
     );
   }

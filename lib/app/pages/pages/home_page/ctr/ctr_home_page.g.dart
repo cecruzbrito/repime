@@ -143,6 +143,17 @@ mixin _$CtrHomePage on _CtrHomePageBase, Store {
   }
 
   @override
+  List<Vaga> _removeTipo(EnumTiposResidencia e, {bool? semTrote}) {
+    final _$actionInfo = _$_CtrHomePageBaseActionController.startAction(
+        name: '_CtrHomePageBase._removeTipo');
+    try {
+      return super._removeTipo(e, semTrote: semTrote);
+    } finally {
+      _$_CtrHomePageBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 filtros: ${filtros},

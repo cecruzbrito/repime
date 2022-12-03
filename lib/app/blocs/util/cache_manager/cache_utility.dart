@@ -44,4 +44,10 @@ class CacheUtility {
     if (!await file.exists()) return null;
     return file.path;
   }
+
+  static Future<void> deleteImage(String pathName) async {
+    var file = File(await _realPath(pathName));
+    if (!await file.exists()) return;
+    await file.delete();
+  }
 }

@@ -15,6 +15,7 @@ class AppModule extends Module {
         RouteApp.adicionarVaga.childRoute,
         RouteApp.detalhesVaga.childRoute,
         RouteApp.perfilLocador.childRoute,
+        RouteApp.loginLocador.childRoute,
       ];
 
   @override

@@ -71,6 +71,17 @@ mixin _$CtrVagaCard on _CtrVagaCardBase, Store {
   }
 
   @override
+  void setVaga(Vaga v) {
+    final _$actionInfo = _$_CtrVagaCardBaseActionController.startAction(
+        name: '_CtrVagaCardBase.setVaga');
+    try {
+      return super.setVaga(v);
+    } finally {
+      _$_CtrVagaCardBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void tapInVaga() {
     final _$actionInfo = _$_CtrVagaCardBaseActionController.startAction(
         name: '_CtrVagaCardBase.tapInVaga');

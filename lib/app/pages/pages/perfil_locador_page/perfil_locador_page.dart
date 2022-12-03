@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:repime/app/global_widgets/button_text_app/button_text_app.dart';
 import 'package:repime/app/global_widgets/loading_app/loading_app.dart';
 import 'package:repime/app/pages/pages/perfil_locador_page/ctr/perfil_locador_ctr.dart';
 import 'package:repime/app/pages/pages/perfil_locador_page/widgets/foto.dart';
@@ -44,7 +45,7 @@ class _PerfilLocadorPageState extends State<PerfilLocadorPage> {
                     children: [
                       DadosLocador(ctr: ctr),
                       SizedBox(height: size.height * .02),
-                      Divider(),
+                      const Divider(),
                       SizedBox(height: size.height * .02),
                       Observer(builder: (_) {
                         if (ctr.vagas.isEmpty) {
@@ -59,10 +60,18 @@ class _PerfilLocadorPageState extends State<PerfilLocadorPage> {
                               style: TextStyle(fontSize: size.height * .02, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: size.height * .03),
-                            for (var v in ctr.vagas) VagaCard(v: v, ctr: ctr)
+                            for (var v in ctr.vagas)
+                              Column(
+                                children: [
+                                  VagaCard(v: v, ctr: ctr),
+                                  const Divider(),
+                                  SizedBox(height: size.height * .01)
+                                ],
+                              )
                           ],
                         );
-                      })
+                      }),
+                      ButtonTextApp(text: "Desconectar", onPressed: ctr.onTapDeslogar)
                     ],
                   ),
                 ),

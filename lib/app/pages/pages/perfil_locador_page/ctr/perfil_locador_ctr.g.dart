@@ -65,6 +65,14 @@ mixin _$PerfilLocadorCtr on _PerfilLocadorCtrBase, Store {
     return _$deleteVagaAsyncAction.run(() => super.deleteVaga(v));
   }
 
+  late final _$onTapDeslogarAsyncAction =
+      AsyncAction('_PerfilLocadorCtrBase.onTapDeslogar', context: context);
+
+  @override
+  Future<void> onTapDeslogar() {
+    return _$onTapDeslogarAsyncAction.run(() => super.onTapDeslogar());
+  }
+
   late final _$_PerfilLocadorCtrBaseActionController =
       ActionController(name: '_PerfilLocadorCtrBase', context: context);
 

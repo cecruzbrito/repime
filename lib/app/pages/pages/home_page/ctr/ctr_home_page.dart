@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:repime/app/blocs/util/enum_tipos_residencia/enum_tipo_residencia.dart';
 import 'package:repime/app/blocs/vaga/db/vaga_db.dart';
 import 'package:repime/app/pages/controller/main_controller.dart';
-import 'package:repime/app/pages/pages/home_page/blocs/item_filter.dart';
+import 'package:repime/app/pages/pages/home_page/blocs/item/item_filter.dart';
 import 'package:repime/config/routes_app/routes_app.dart';
 
 import '../../../../blocs/vaga/vaga.dart';
@@ -65,18 +66,34 @@ abstract class _CtrHomePageBase with Store {
     }
 
     if (filtros[0].isSelected) {
-      aux.removeWhere((v) => !v.residencia.tipo.isRepublica);
+      aux = _removeTipo(EnumTiposResidencia.replublica).asObservable();
     }
     if (filtros[1].isSelected) {
-      aux.removeWhere((v) => v.residencia.tipo.isRepublica);
+      aux = _removeTipo(EnumTiposResidencia.kitnet).asObservable();
     }
     if (filtros[2].isSelected) {
-      aux.removeWhere((v) => v.residencia.tipo.isRepublica && v.rep!.isTrote);
+      aux = _removeTipo(EnumTiposResidencia.replublica, semTrote: true).asObservable();
     }
     if (filtros[3].isSelected) {
       aux.sort(((a, b) => double.parse(a.mensalidade).compareTo(double.parse(b.mensalidade))));
     }
-    return aux.isEmpty ? <Vaga>[].asObservable() : aux.asObservable();
+    for (var e in aux) {
+      print(e.residencia.endereco.endereco);
+    }
+    return aux;
+  }
+
+  @action
+  List<Vaga> _removeTipo(EnumTiposResidencia e, {bool? semTrote}) {
+    var lVagas = <Vaga>[];
+    for (var v in _allVagas) {
+      if (v.residencia.tipo != e) continue;
+      if (semTrote != null && e.isRepublica) {
+        if (semTrote && v.rep!.isTrote) continue;
+      }
+      lVagas.add(v);
+    }
+    return lVagas;
   }
 
   @observable
@@ -93,12 +110,19 @@ abstract class _CtrHomePageBase with Store {
   }
 
   tapInPerfil() {
-    var loc = Modular.get<MainController>().locadorAtual;
-
-    Modular.get<PerfilLocadorCtr>()
-        .setVagas(_allVagas.where((v) => v.residencia.idLocador == loc.id).toList());
-    Modular.to.pushNamed(RouteApp.perfilLocador.name);
+    if (loading) return;
+    var loc = Modular.get<MainController>();
+    if (loc.isValid) {
+      Modular.get<PerfilLocadorCtr>()
+          .setVagas(_allVagas.where((v) => v.residencia.idLocador == loc.locadorAtual.id).toList());
+      Modular.to.pushNamed(RouteApp.perfilLocador.name);
+    } else {
+      Modular.to.pushNamed(RouteApp.loginLocador.name);
+    }
   }
 
-  tapInAddVaga() => Modular.to.pushNamed(RouteApp.adicionarVaga.name);
+  tapInAddVaga() {
+    if (loading) return;
+    return Modular.to.pushNamed(RouteApp.adicionarVaga.name);
+  }
 }

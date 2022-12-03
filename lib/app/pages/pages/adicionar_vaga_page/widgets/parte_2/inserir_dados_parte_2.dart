@@ -21,7 +21,7 @@ class InserirDadosParte2 extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Cabecalho(),
+              const Cabecalho(),
               Observer(builder: (_) {
                 if (ctrAdicionarVagaPage.images.isEmpty) {
                   return Column(
@@ -63,15 +63,17 @@ class InserirDadosParte2 extends StatelessWidget {
                 children: [
                   ButtonIconApp(
                     icon: Icons.add_a_photo,
+                    colorIcon: Colors.white,
                     onPressed: ctrAdicionarVagaPage.tapInImage,
-                    sizeIcon: _size.height * .025,
+                    sizeIcon: _size.height * .02,
                   ),
                   SizedBox(width: _size.width * .02),
                   ButtonIconApp(
                     icon: Icons.close,
+                    colorIcon: Colors.white,
                     colorButton: Colors.red,
                     onPressed: ctrAdicionarVagaPage.onTapRemoveImages,
-                    sizeIcon: _size.height * .025,
+                    sizeIcon: _size.height * .02,
                   ),
                 ],
               ),

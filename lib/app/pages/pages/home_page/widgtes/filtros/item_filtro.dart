@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../blocs/item_filter.dart';
+import '../../blocs/item/item_filter.dart';
 
 class ItemFiltro extends StatelessWidget {
   const ItemFiltro({super.key, required this.item});

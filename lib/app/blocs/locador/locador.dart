@@ -6,10 +6,9 @@ class Locador {
   String? foto;
 
   Residencia? residencia;
+  Locador({required this.id, required this.contato, required this.nome, required this.senha, this.foto});
 
   static Locador zero = Locador(contato: '', id: 0, nome: '', senha: '', foto: '');
 
   set setResidencia(Residencia value) => residencia = value;
-
-  Locador({required this.id, required this.contato, required this.nome, required this.senha, this.foto});
 }
