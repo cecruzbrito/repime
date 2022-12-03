@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:repime/app/pages/pages/detalhes_vaga_page/detalhes_vaga_page.dart';
+import 'package:repime/app/pages/pages/perfil_locador_page/perfil_locador_page.dart';
 import 'package:repime/config/routes_app/guards/first_page/first_page_guard.dart';
 
 import '../../app/pages/pages/adicionar_vaga_page/adicionar_vaga_page.dart';
@@ -24,5 +26,7 @@ class RouteApp {
 
   static RouteApp adicionarVaga = RouteApp(name: '/adicionarVaga', route: const AdicionarVagaPage());
 
-  static RouteApp detalhesVaga = RouteApp(name: '/detalhesVaga', route: Container());
+  static RouteApp detalhesVaga = RouteApp(name: '/detalhesVaga', route: const DetalhesVagaPage());
+
+  static RouteApp perfilLocador = RouteApp(name: '/perfilLocador', route: const PerfilLocadorPage());
 }

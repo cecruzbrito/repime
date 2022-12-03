@@ -207,6 +207,7 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
       print(cidade.nome);
 
       var residencia = Residencia(
+          idLocador: 0,
           cidade: cidade,
           id: 0,
           tipo: tiposResidencia.firstWhere((e) => e.isSelected).tipo,
@@ -218,6 +219,7 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
       if (isRepublica) {
         var date = DateTime.parse('${ctrFundacaoAno.text}-$mes-$dia');
         var rep = Republica(
+            idLocador: 0,
             cidade: residencia.cidade,
             id: 0,
             tipo: residencia.tipo,

@@ -2,7 +2,6 @@ import 'package:repime/app/blocs/cidade/cidade.dart';
 import 'package:repime/app/blocs/cidade/db/cidade_db.dart';
 import 'package:repime/app/blocs/connection_database/connection_database.dart';
 import 'package:repime/app/blocs/residencia/blocs/endereco/db/endereco_db.dart';
-import 'package:repime/app/blocs/residencia/blocs/republica/republica.dart';
 import 'package:repime/app/blocs/residencia/residencia.dart';
 
 import '../../locador/locador.dart';
@@ -10,7 +9,12 @@ import '../../util/enum_tipos_residencia/enum_tipo_residencia.dart';
 import '../../vaga/vaga.dart';
 
 class ResidenciaDB extends Residencia {
-  ResidenciaDB({required super.cidade, required super.id, required super.tipo, required super.endereco});
+  ResidenciaDB(
+      {required super.cidade,
+      required super.id,
+      required super.tipo,
+      required super.idLocador,
+      required super.endereco});
 
   static Future<ResidenciaDB> getAll(Locador locador) async {
     var r = await ConnectionDataBase().make(
@@ -49,12 +53,14 @@ class ResidenciaDB extends Residencia {
   }
 
   factory ResidenciaDB.fromJsonHome(j) => ResidenciaDB(
+      idLocador: j['residencia']['id_locador'],
       id: j['residencia']['id'],
       tipo: EnumTiposResidencia.fromJson(j['residencia']),
       cidade: Cidade(id: 00, nome: 'nome', uf: 'uf', pais: 'pais'),
       endereco: EnderecoDB.fromJson(j));
 
   factory ResidenciaDB.fromJson(j) => ResidenciaDB(
+      idLocador: j['residencia']['id_locador'],
       id: j['residencia']['id'],
       tipo: EnumTiposResidencia.fromJson(j['residencia']),
       cidade: CidadeDB.fromJson(j),
@@ -64,6 +70,7 @@ class ResidenciaDB extends Residencia {
     var x = j['residencia']['residencia']['cidade'];
     return ResidenciaDB(
         id: j['residencia']['residencia']['id'],
+        idLocador: j['residencia']['residencia']['id_locador'],
         tipo: EnumTiposResidencia.fromJson(j['residencia']),
         cidade: CidadeDB.fromJson(x),
         endereco: EnderecoDB.fromJson(j['residencia']['residencia']['']));
@@ -71,6 +78,7 @@ class ResidenciaDB extends Residencia {
 
   toJson() => {
         'residencia': {
+          'id_locador': idLocador,
           'id': id,
           'tipo': tipo.toJson(),
           'cidade': CidadeDB.toDB(cidade).toJson(),
@@ -79,5 +87,5 @@ class ResidenciaDB extends Residencia {
       };
 
   static ResidenciaDB toDB(Residencia r) =>
-      ResidenciaDB(cidade: r.cidade, endereco: r.endereco, id: r.id, tipo: r.tipo);
+      ResidenciaDB(cidade: r.cidade, endereco: r.endereco, id: r.id, tipo: r.tipo, idLocador: r.idLocador);
 }

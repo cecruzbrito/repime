@@ -4,8 +4,10 @@ import 'package:mobx/mobx.dart';
 import 'package:repime/app/blocs/vaga/db/vaga_db.dart';
 import 'package:repime/app/pages/controller/main_controller.dart';
 import 'package:repime/app/pages/pages/home_page/blocs/item_filter.dart';
+import 'package:repime/config/routes_app/routes_app.dart';
 
 import '../../../../blocs/vaga/vaga.dart';
+import '../../perfil_locador_page/ctr/perfil_locador_ctr.dart';
 part 'ctr_home_page.g.dart';
 
 class CtrHomePage = _CtrHomePageBase with _$CtrHomePage;
@@ -56,8 +58,6 @@ abstract class _CtrHomePageBase with Store {
 
   @computed
   ObservableList<Vaga> get vagas {
-    print('VAGAS =>${_allVagas.length}');
-
     if (filtros.every((e) => !e.isSelected) || _allVagas.isEmpty) return _allVagas;
     var aux = <Vaga>[].asObservable();
     for (var v in _allVagas) {
@@ -91,4 +91,14 @@ abstract class _CtrHomePageBase with Store {
     _setFiltros();
     _setLoading(false);
   }
+
+  tapInPerfil() {
+    var loc = Modular.get<MainController>().locadorAtual;
+
+    Modular.get<PerfilLocadorCtr>()
+        .setVagas(_allVagas.where((v) => v.residencia.idLocador == loc.id).toList());
+    Modular.to.pushNamed(RouteApp.perfilLocador.name);
+  }
+
+  tapInAddVaga() => Modular.to.pushNamed(RouteApp.adicionarVaga.name);
 }

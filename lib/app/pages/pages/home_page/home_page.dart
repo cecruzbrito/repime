@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Cabecalho(),
+                  Cabecalho(ctr: ctr),
                   const Expanded(child: LoadingApp()),
                 ],
               ),
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
           return SingleChildScrollView(
             child: Column(
               children: [
-                Cabecalho(),
+                Cabecalho(ctr: ctr),
                 Filtros(ctr: ctr),
                 SizedBox(height: size.height * .03),
                 Observer(builder: (_) {

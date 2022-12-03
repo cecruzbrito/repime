@@ -4,9 +4,14 @@ import 'package:repime/app/blocs/util/enum_tipos_residencia/enum_tipo_residencia
 import 'blocs/endereco/endereco.dart';
 
 class Residencia {
-  int id;
+  int id, idLocador;
   EnumTiposResidencia tipo;
   Cidade cidade;
   Endereco endereco;
-  Residencia({required this.cidade, required this.id, required this.tipo, required this.endereco});
+  Residencia(
+      {required this.cidade,
+      required this.idLocador,
+      required this.id,
+      required this.tipo,
+      required this.endereco});
 }

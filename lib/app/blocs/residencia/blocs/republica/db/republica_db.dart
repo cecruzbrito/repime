@@ -12,6 +12,7 @@ class RepublicaDB extends Republica {
       required super.endereco,
       required super.dateFundacao,
       required super.nome,
+      required super.idLocador,
       required super.isTrote});
 
   static getRepublica(Residencia residencia) async {
@@ -23,6 +24,7 @@ class RepublicaDB extends Republica {
   }
 
   factory RepublicaDB.repFromJson(j, Residencia res) => RepublicaDB(
+      idLocador: res.idLocador,
       cidade: res.cidade,
       id: res.id,
       tipo: res.tipo,

@@ -11,6 +11,7 @@ class Republica extends Residencia {
       required super.endereco,
       required this.dateFundacao,
       required this.nome,
+      required super.idLocador,
       required this.isTrote});
 
   String get dateFormated => "${dateFundacao.day}/${dateFundacao.month}/${dateFundacao.year}";

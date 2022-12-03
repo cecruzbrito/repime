@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:repime/app/pages/controller/main_controller.dart';
+import 'package:repime/app/pages/pages/home_page/ctr/ctr_home_page.dart';
 import 'package:repime/config/routes_app/routes_app.dart';
 
 import '../../../../global_widgets/button_icon/button_icon_app.dart';
 
 class Cabecalho extends StatelessWidget {
-  Cabecalho({super.key});
-
+  Cabecalho({super.key, required this.ctr});
+  CtrHomePage ctr;
   final _locatario = Modular.get<MainController>().locatarioAtual;
 
   @override
@@ -25,14 +26,14 @@ class Cabecalho extends StatelessWidget {
             children: [
               ButtonIconApp(
                 icon: Icons.person,
-                onPressed: () => Modular.to.pushNamed(RouteApp.registrarLocadorPage.name),
+                onPressed: ctr.tapInPerfil,
                 sizeIcon: size.height * .03,
                 isAlternative: true,
               ),
               ButtonIconApp(
                 icon: Icons.add,
                 colorIcon: Colors.white,
-                onPressed: () => Modular.to.pushNamed(RouteApp.adicionarVaga.name),
+                onPressed: ctr.tapInAddVaga,
                 sizeIcon: size.height * .03,
               ),
             ],

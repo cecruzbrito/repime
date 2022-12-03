@@ -21,14 +21,6 @@ class VagaDB extends Vaga {
       required super.mensalidade});
 
   Future<Vaga> getFotos({int limit = 0}) async {
-    var cacheTemp = await CacheUtility.getImageTemp(_pathFile(0));
-
-    if (limit == 0 && cacheTemp != null) {
-      fotos.clear();
-      fotos[0] = cacheTemp;
-      return this;
-    }
-
     var result = limit > 0
         ? await ConnectionDataBase().make(QueryDataBase(
             commandSQL: 'SELECT * FROM foto_vaga as v WHERE v.id_vaga = @idVaga LIMIT @numLimit',
@@ -74,7 +66,6 @@ class VagaDB extends Vaga {
       }
       vagas.add(vTemp);
     }
-
     return vagas;
   }
 
@@ -86,6 +77,11 @@ class VagaDB extends Vaga {
     await ConnectionDataBase().make(QueryDataBase(
         commandSQL: "SELECT * FROM adicionarVaga(@mens, @info, @idR, @fotos)",
         arguments: {'mens': mensalidade, 'info': info, 'idR': idResidencia, 'fotos': fotos}));
+  }
+
+  static Future<void> deleteVaga(int idVaga) async {
+    await ConnectionDataBase().make(
+        QueryDataBase(commandSQL: "DELETE FROM vaga WHERE id = @idVaga", arguments: {'idVaga': idVaga}));
   }
 
   Future<Residencia> getDadosResidencia() async => await ResidenciaDB.getEspecificResidencia(this);
