@@ -33,6 +33,7 @@
 
 A aplicação mobile RepiMe busca centralizar, gerenciar e organizar as informações sobre as vagas em Repúblicas e Kitnets disponíveis na cidade selecionada.
 
+---
 ## Sobre
 
 Tendo em vista a forte tradição de repúblicas na cidade de Itajubá, muitos ingressantes nas universidades da cidade buscam acomodações durante o ciclo acadêmico. Nesse cenário, a fraca centralização das informações acerca das vagas gera um estresse que pode ser evitado.
@@ -48,14 +49,16 @@ As orientações estão divididas nos seguintes tópicos:
 - [Tecnologias](#tecnologias-technologist)
 - [Contribuidores](#contribuidores)
 
+---
 ## Funcionalidades :gear:
 
  - [x] Coletar cidade e universidade do usuário;
  - [x] Anunciar novas vagas (características da acomodação);
  - [x] Fornecer as informações para contato com o dono da vaga;
  - [x] Permitir o anúncio de novas vagas para usuários cadastrados;
- - [x] Marcar no mapa as vagas já cadastradas.
+ - [ ] Marcar no mapa as vagas já cadastradas.
 
+---
 ## Banco de dados :chair: :game_die:
 A aplicação utiliza um banco relacional presente no modelo entidade relacionamento abaixo, a modelagem visa permitir o registro dos cadastros de usuários, vagas, residências, locadores, vagas e cidades. A hospedagem foi feita no Heroku com o add-on Heroku Postgres e a aplicação conversa diretamento com o banco. O pgAdmin4 facilitou o processo de criação e vizualização das tabelas/relacionamentos.
 
@@ -66,6 +69,7 @@ Todos os comandos SQL utilizados para criar tabelas, tipos e funções estão pr
 Para realizar a conexão com o banco utilizou-se a dependência:
 >postgres: ^2.5.2
 
+---
 ## Pré-requisitos e configuração :hammer_and_wrench:
 No geral, para executar a aplicação é recomendado que o sistema já possua:
     > Java 8+;
@@ -117,18 +121,30 @@ $ flutter run
 
 Se quiser rodar a aplicação mobile em modo de debuggação é necessário habilitar a depuração no Android, conectar o aparelho com cabo USB e usar o Run and Debug do VSCode. 
 
+---
 ## Layout :art:
 Design base do figma: [Real Estate Mobile App Design](https://dribbble.com/shots/17966349-Real-Estate-Mobile-App-Design)
 <p align="center">
-  <img alt="NextLevelWeek" title="#Login" src="https://imgur.com/l64lQIw.png" width="200px">
+  <img alt="RepiMe" title="#First" src="https://imgur.com/UIz7eEt.png" width="200px">
 
-  <img alt="NextLevelWeek" title="#HomeNoLogin" src="https://imgur.com/pl0j94A.png" width="200px">
+  <img alt="RepiMe" title="#HomeNoLogin" src="https://imgur.com/YB4eeih.png" width="200px">
 
-  <img alt="NextLevelWeek" title="#HomeLogin" src="https://imgur.com/zFK0Cuk.png" width="200px">
+  <img alt="RepiMe" title="#Login" src="https://imgur.com/YcSMfek.png" width="200px">
   
-  <img alt="NextLevelWeek" title="#User" src="https://imgur.com/2RVhPSu.png" width="200px">
+  <img alt="RepiMe" title="#HomeLogin" src="https://imgur.com/9DLNyaa.png" width="200px">
+
+  <img alt="RepiMe" title="#UserRegister" src="https://imgur.com/Gz3JBgI.png" width="200px">
+
+  <img alt="RepiMe" title="#UserRegister2" src="https://imgur.com/NGHSFL9.png" width="200px">
+
+  <img alt="RepiMe" title="#User" src="https://imgur.com/xkNz835.png" width="200px">
+
+  <img alt="RepiMe" title="#VagaRegist" src="https://imgur.com/yHZNSpA.png" width="200px">
+
+  <img alt="RepiMe" title="#VagaRegist2" src="https://imgur.com/qSMB5Cb.png" width="200px">
 </p>
 
+---
 ## Tecnologias :technologist:
     O ponto de início deste projeto foi uma aplicação Flutter, as dependências utilizadas estão presentes no pubspec.yaml. 
 ---
@@ -165,4 +181,12 @@ Utilitários:
 
 ## Contribuidores
 
-
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/darlosss"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/72506461?v=4" width="100px;" alt=""/><br /><sub><b>Carlos Eduardo</b></sub></a><br /><a href="https://github.com/darlosss/repime" title="RepiMe">:technologist:</a></td>
+    <td align="center"><a href="https://github.com/MatMB115"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/63670910?v=4" width="100px;" alt=""/><br /><sub><b>Matheus Martins</b></sub></a><br /><a href="https://github.com/MatMB115/repime" title="RepiMe">:technologist:</a></td>
+    <td align="center"><a href="https://github.com/joaomarcos2803"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/103376456?v=4" width="100px;" alt=""/><br /><sub><b>João Marcos</b></sub></a><br /><a href="https://github.com/joaomarcos2803" title="RepiMe">:technologist:</a></td>
+    <td align="center"><a href="https://github.com/adriano-12"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/66391807?v=4" width="100px;" alt=""/><br /><sub><b>Adriano Lucas</b></sub></a><br /><a href="https://github.com/adriano-12" title="RepiMe">:technologist:</a></td>
+    <td align="center"><a href="https://www.instagram.com/lecorax/?igshid=YmMyMTA2M2Y%3D"><img style="border-radius: 50%;" src="https://i.imgur.com/hNQXe4J.png" width="100px;" alt=""/><br /><sub><b>Alexsandra</b></sub></a><br /><a href="https://www.instagram.com/lecorax/?igshid=YmMyMTA2M2Y%3D" title="Lecorax">:art:</a></td>
+  </tr>
+</table>
