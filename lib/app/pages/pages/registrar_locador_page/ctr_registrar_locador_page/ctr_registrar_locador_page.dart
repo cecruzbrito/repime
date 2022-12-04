@@ -14,6 +14,7 @@ import 'package:repime/app/blocs/residencia/residencia.dart';
 import 'package:repime/app/blocs/util/enum_tipos_residencia/enum_tipo_residencia.dart';
 import 'package:repime/app/blocs/util/enum_tipos_residencia/store_enum/store_enum_tipo_residencia.dart';
 import 'package:repime/app/pages/controller/main_controller.dart';
+import 'package:repime/config/routes_app/routes_app.dart';
 import '../../../../global_widgets/snack_bar_app/snack_bar_app.dart';
 
 part 'ctr_registrar_locador_page.g.dart';
@@ -249,7 +250,7 @@ abstract class _CtrRegistrarLocadorPageBase with Store {
       var loc = await LocadorDB.makeLogin(ctrTextNome.text, ctrTextSenha.text);
       await loc!.setCache();
       Modular.get<MainController>().setLocadorAtual(loc);
-      Modular.to.pop();
+      Modular.to.pushNamedAndRemoveUntil(RouteApp.homePage.name, ModalRoute.withName(RouteApp.homePage.name));
 
       ScaffoldMessenger.of(keyScaffold.currentContext!).showSnackBar(SnackBarApp.show(
           text: 'Nome de usuário e residência cadastradas!', context: keyScaffold.currentContext!));
