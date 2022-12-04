@@ -88,7 +88,7 @@ Se houver problemas com o SDK Command-line do Android, entre no SDK Manager pres
 Se necessário instale a extensão do Flutter no VSCode com:
 >ext install Dart-Code.flutter
 
-O release do projeto fornece um apk para utilizar o aplicativo e, apesar do foco na versão mobile, as versões para Windows e Linux também estão funcionais.
+O release do projeto fornece um [apk](https://github.com/MatMB115/repime/tree/main/apk) para utilizar o aplicativo e, apesar do foco na versão mobile, as versões para Windows e Linux também estão funcionais.
 
 Para executar essas versões é necessário:
 
