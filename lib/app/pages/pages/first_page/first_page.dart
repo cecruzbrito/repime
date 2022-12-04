@@ -35,6 +35,10 @@ class _FirstPageState extends State<FirstPage> {
                   child: Stack(
                     children: [
                       Align(
+                        alignment: Alignment.topCenter,
+                        child: Image.asset('assets/repime_logo.png', height: size.height * .3),
+                      ),
+                      Align(
                           alignment: Alignment.center,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
