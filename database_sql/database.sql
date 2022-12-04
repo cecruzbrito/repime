@@ -1,3 +1,10 @@
+CREATE TYPE public.t_endereco AS
+(
+	latitude bigint,
+	longitude bigint,
+	endereco character varying(100)
+);
+
 CREATE TABLE IF NOT EXISTS public.cidade
 (
     id integer NOT NULL DEFAULT nextval('cidade_id_seq'::regclass),
