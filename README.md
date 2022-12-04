@@ -132,7 +132,7 @@ Design base do figma: [Real Estate Mobile App Design](https://dribbble.com/shots
 ## Tecnologias 🧑‍💻
     O ponto de início deste projeto foi uma aplicação Flutter, as dependências utilizadas estão presentes no pubspec.yaml. 
 ---
-Aplicação:
+### Aplicação
 
     -> Flutter
     - easy_refresh: ^3.0.5
@@ -148,14 +148,14 @@ Aplicação:
     - build_runner: ^2.3.2
     - mobx_codegen: ^2.1.1
 ---
-Banco de Dados:
+### Banco de Dados
 
     -> PostgreSQL
     - pgAdmin4 6.16
     - Heroku Postgres Mini
     - BRmodelo
 ---
-Utilitários:
+### Utilitários
 
     -> Dev
     - Visual Studio Code 1.73
@@ -166,3 +166,4 @@ Utilitários:
 ## Contribuidores
 
 
+COMPLETAR
