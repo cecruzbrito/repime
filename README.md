@@ -137,11 +137,15 @@ Design base do figma: [Real Estate Mobile App Design](https://dribbble.com/shots
 
   <img alt="RepiMe" title="#UserRegister2" src="https://imgur.com/NGHSFL9.png" width="200px">
 
+  <img alt="RepiMe" title="#UserRegister3" src="https://imgur.com/9cIJan5.png" width="200px">
+
   <img alt="RepiMe" title="#User" src="https://imgur.com/xkNz835.png" width="200px">
 
   <img alt="RepiMe" title="#VagaRegist" src="https://imgur.com/yHZNSpA.png" width="200px">
 
   <img alt="RepiMe" title="#VagaRegist2" src="https://imgur.com/qSMB5Cb.png" width="200px">
+
+  <img alt="RepiMe" title="#Vaga" src="https://imgur.com/93sUQMK.png" width="200px">
 </p>
 
 ---
