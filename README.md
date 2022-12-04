@@ -41,14 +41,14 @@ Conforme as atividades da disciplina de Administração e Gerência de Redes da 
 
 As orientações estão divididas nos seguintes tópicos:
 
-- [Funcionalidades](#funcionalidades-⚙️)
-- [Banco de dados](#banco-de-dados-🪑🎲)
-- [Pré-requisitos e configuração](#pré-requisitos-e-configuração-⚒️)
-- [Layout](#layout-🎨)
-- [Tecnologias](#tecnologias-🧑‍💻)
-- [Contribuidores]()
+- [Funcionalidades](#funcionalidades-gear)
+- [Banco de dados](#banco-de-dados-chair-game_die)
+- [Pré-requisitos e configuração](#pré-requisitos-e-configuração-hammer_and_wrench)
+- [Layout](#layout-art)
+- [Tecnologias](#tecnologias-technologist)
+- [Contribuidores](#contribuidores)
 
-## Funcionalidades ⚙️
+## Funcionalidades :gear:
 
  - [x] Coletar cidade e universidade do usuário;
  - [x] Anunciar novas vagas (características da acomodação);
@@ -56,7 +56,7 @@ As orientações estão divididas nos seguintes tópicos:
  - [x] Permitir o anúncio de novas vagas para usuários cadastrados;
  - [x] Marcar no mapa as vagas já cadastradas.
 
-## Banco de dados 🪑🎲
+## Banco de dados :chair: :game_die:
 A aplicação utiliza um banco relacional presente no modelo entidade relacionamento abaixo, a modelagem visa permitir o registro dos cadastros de usuários, vagas, residências, locadores, vagas e cidades. A hospedagem foi feita no Heroku com o add-on Heroku Postgres e a aplicação conversa diretamento com o banco. O pgAdmin4 facilitou o processo de criação e vizualização das tabelas/relacionamentos.
 
 ![MER-RepiMe](https://imgur.com/ZHFVcgT.png)
@@ -66,7 +66,7 @@ Todos os comandos SQL utilizados para criar tabelas, tipos e funções estão pr
 Para realizar a conexão com o banco utilizou-se a dependência:
 >postgres: ^2.5.2
 
-## Pré-requisitos e configuração ⚒️
+## Pré-requisitos e configuração :hammer_and_wrench:
 No geral, para executar a aplicação é recomendado que o sistema já possua:
     > Java 8+;
     > Flutter SDK;
@@ -88,7 +88,7 @@ Se houver problemas com o SDK Command-line do Android, entre no SDK Manager pres
 Se necessário instale a extensão do Flutter no VSCode com:
 >ext install Dart-Code.flutter
 
-O release do projeto fornece um [apk](https://github.com/MatMB115/repime/tree/main/apk) para utilizar o aplicativo e, apesar do foco na versão mobile, as versões para Windows e Linux também estão funcionais.
+O release do projeto fornece um apk para utilizar o aplicativo e, apesar do foco na versão mobile, as versões para Windows e Linux também estão funcionais.
 
 Para executar essas versões é necessário:
 
@@ -117,7 +117,7 @@ $ flutter run
 
 Se quiser rodar a aplicação mobile em modo de debuggação é necessário habilitar a depuração no Android, conectar o aparelho com cabo USB e usar o Run and Debug do VSCode. 
 
-## Layout 🎨
+## Layout :art:
 Design base do figma: [Real Estate Mobile App Design](https://dribbble.com/shots/17966349-Real-Estate-Mobile-App-Design)
 <p align="center">
   <img alt="NextLevelWeek" title="#Login" src="https://imgur.com/l64lQIw.png" width="200px">
@@ -129,10 +129,10 @@ Design base do figma: [Real Estate Mobile App Design](https://dribbble.com/shots
   <img alt="NextLevelWeek" title="#User" src="https://imgur.com/2RVhPSu.png" width="200px">
 </p>
 
-## Tecnologias 🧑‍💻
+## Tecnologias :technologist:
     O ponto de início deste projeto foi uma aplicação Flutter, as dependências utilizadas estão presentes no pubspec.yaml. 
 ---
-### Aplicação
+Aplicação:
 
     -> Flutter
     - easy_refresh: ^3.0.5
@@ -148,14 +148,14 @@ Design base do figma: [Real Estate Mobile App Design](https://dribbble.com/shots
     - build_runner: ^2.3.2
     - mobx_codegen: ^2.1.1
 ---
-### Banco de Dados
+Banco de Dados:
 
     -> PostgreSQL
     - pgAdmin4 6.16
     - Heroku Postgres Mini
     - BRmodelo
 ---
-### Utilitários
+Utilitários:
 
     -> Dev
     - Visual Studio Code 1.73
@@ -166,4 +166,3 @@ Design base do figma: [Real Estate Mobile App Design](https://dribbble.com/shots
 ## Contribuidores
 
 
-COMPLETAR
