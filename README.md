@@ -167,6 +167,7 @@ Aplicação:
     - flutter_lints: ^2.0.0
     - build_runner: ^2.3.2
     - mobx_codegen: ^2.1.1
+    - flutter_launcher_icons: ^0.11.0
 ---
 Banco de Dados:
 
