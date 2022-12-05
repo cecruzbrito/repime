@@ -35,7 +35,7 @@ class Cabecalho extends StatelessWidget {
               ),
               SizedBox(height: _size.height * .01),
               Text(
-                "Estamos felizes em te vê-lo.",
+                "Estamos felizes em vê-lo.",
                 style: TextStyle(fontSize: _size.height * .015, color: Colors.grey),
               ),
               SizedBox(height: _size.height * .002),
