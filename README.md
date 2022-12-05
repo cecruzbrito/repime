@@ -125,9 +125,9 @@ Se quiser rodar a aplicação mobile em modo de debuggação é necessário habi
 ## Layout :art:
 Design base do figma: [Real Estate Mobile App Design](https://dribbble.com/shots/17966349-Real-Estate-Mobile-App-Design)
 <p align="center">
-  <img alt="RepiMe" title="#First" src="https://imgur.com/UIz7eEt.png" width="200px">
+  <img alt="RepiMe" title="#First" src="https://imgur.com/2crsdB6.png" width="200px">
 
-  <img alt="RepiMe" title="#HomeNoLogin" src="https://imgur.com/YB4eeih.png" width="200px">
+  <img alt="RepiMe" title="#HomeNoLogin" src="https://imgur.com/5VFfZY3.png" width="200px">
 
   <img alt="RepiMe" title="#Login" src="https://imgur.com/YcSMfek.png" width="200px">
   
