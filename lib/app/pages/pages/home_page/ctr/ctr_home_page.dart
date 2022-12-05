@@ -24,7 +24,7 @@ abstract class _CtrHomePageBase with Store {
   @action
   void _setFiltros() {
     filtros = [
-      ItemFilter(icon: Icons.home, tap: () => _setFiltroRep(filtros[0]), text: 'Republica'),
+      ItemFilter(icon: Icons.home, tap: () => _setFiltroRep(filtros[0]), text: 'República'),
       ItemFilter(icon: Icons.apartment, tap: () => _setFiltroKitNet(filtros[1]), text: 'KitNet'),
       ItemFilter(icon: Icons.celebration, tap: () => _setFiltroSemTrotes(filtros[2]), text: 'Sem trotes'),
       ItemFilter(icon: Icons.payment, tap: () => _setFiltroVagasMensalidade(filtros[3]), text: 'Mensalidade'),
