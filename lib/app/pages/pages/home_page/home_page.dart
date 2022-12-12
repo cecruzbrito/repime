@@ -14,13 +14,25 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  late final ctrAnimFiltros = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
   var ctr = CtrHomePage();
 
   @override
   void initState() {
     super.initState();
-    ctr.getVagas();
+    firstRequest();
+  }
+
+  firstRequest() async {
+    await ctr.getVagas();
+    await ctrAnimFiltros.forward();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    ctrAnimFiltros.dispose();
   }
 
   @override
@@ -49,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   Cabecalho(ctr: ctr),
-                  Filtros(ctr: ctr),
+                  Filtros(ctr: ctr, ctrAnim: ctrAnimFiltros),
                   SizedBox(height: size.height * .03),
                   Observer(builder: (_) {
                     return Column(

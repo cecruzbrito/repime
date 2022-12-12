@@ -19,7 +19,7 @@ abstract class _CtrFirstPageBase with Store {
   var keyScaffold = GlobalKey<ScaffoldState>();
 
   @observable
-  bool loading = false;
+  bool loading = true;
 
   @action
   void setLoading(bool value) => loading = value;
