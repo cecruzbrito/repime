@@ -63,7 +63,7 @@ As orientações estão divididas nos seguintes tópicos:
  - [x] Anunciar novas vagas (características da acomodação);
  - [x] Fornecer as informações para contato com o dono da vaga;
  - [x] Permitir o anúncio de novas vagas para usuários cadastrados;
- - [ ] Marcar no mapa as vagas já cadastradas.
+ - [x] Marcar no mapa as vagas já cadastradas.
 
 ---
 ## Banco de dados :chair: :game_die:
@@ -79,6 +79,7 @@ Para realizar a conexão com o banco utilizou-se a dependência:
 ---
 ## Pré-requisitos e configuração :hammer_and_wrench:
 No geral, para executar a aplicação é recomendado que o sistema já possua:
+
     > Java 8+;
     > Flutter SDK;
     > Android Studio;
