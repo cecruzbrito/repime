@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_routes/google_maps_routes.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../blocs/vaga/vaga.dart';
@@ -91,5 +92,13 @@ abstract class _CtrDetalhesVagaMapaBase with Store {
 
   void dispose() {
     ctrMap!.dispose();
+  }
+
+  String? get distanceCalculator {
+    if (localizationResidencia == null || localizationUniversidade == null) return null;
+    return DistanceCalculator().calculateRouteDistance([
+      LatLng(localizationResidencia!.latitude, localizationResidencia!.longitude),
+      LatLng(localizationUniversidade!.latitude, localizationUniversidade!.longitude),
+    ]);
   }
 }

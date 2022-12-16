@@ -20,13 +20,13 @@ class Mapa extends StatelessWidget {
           Marker(
               infoWindow: InfoWindow(title: ctr.toStringUniversidade()),
               markerId: const MarkerId('1'),
-              icon: ctr.iconUniversidade!,
+              icon: ctr.iconUniversidade ?? BitmapDescriptor.defaultMarker,
               position:
                   LatLng(ctr.localizationUniversidade!.latitude, ctr.localizationUniversidade!.longitude)),
           Marker(
               infoWindow: InfoWindow(title: ctr.toStringUniversidade()),
               markerId: const MarkerId('2'),
-              icon: ctr.iconResidencia!,
+              icon: ctr.iconResidencia ?? BitmapDescriptor.defaultMarker,
               position: LatLng(ctr.localizationResidencia!.latitude, ctr.localizationResidencia!.longitude))
         },
         minMaxZoomPreference: const MinMaxZoomPreference(14.5, 20),

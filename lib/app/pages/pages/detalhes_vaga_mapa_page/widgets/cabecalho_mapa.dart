@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:repime/app/pages/controller/main_controller.dart';
 import 'package:repime/app/pages/pages/detalhes_vaga_mapa_page/ctr/ctr_detalhes_vaga_mapa.dart';
@@ -20,7 +21,7 @@ class CabecalhoMapa extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: size.width * .08, vertical: size.height * .02),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               children: [
@@ -58,6 +59,14 @@ class CabecalhoMapa extends StatelessWidget {
                 ),
               ],
             ),
+            const Divider(),
+            Observer(builder: (_) {
+              if (ctr.distanceCalculator == null) return Container();
+              return Text(
+                ctr.distanceCalculator!,
+                style: TextStyle(fontSize: size.height * .015, color: Colors.grey),
+              );
+            }),
           ],
         ),
       ),
