@@ -6,6 +6,7 @@ import 'package:repime/app/pages/pages/perfil_locador_page/perfil_locador_page.d
 import 'package:repime/config/routes_app/guards/first_page/first_page_guard.dart';
 
 import '../../app/pages/pages/adicionar_vaga_page/adicionar_vaga_page.dart';
+import '../../app/pages/pages/detalhes_vaga_mapa_page/detalhes_vaga_mapa_page.dart';
 import '../../app/pages/pages/first_page/first_page.dart';
 import '../../app/pages/pages/home_page/home_page.dart';
 import '../../app/pages/pages/registrar_locador_page/registrar_locador_page.dart';
@@ -32,4 +33,6 @@ class RouteApp {
   static RouteApp perfilLocador = RouteApp(name: '/perfilLocador', route: const PerfilLocadorPage());
 
   static RouteApp loginLocador = RouteApp(name: '/loginLocador', route: const LoginPage());
+
+  static RouteApp detalhesVagaMapa = RouteApp(name: '/detalhesVagaMapa', route: const DetalhesVagaMapaPage());
 }

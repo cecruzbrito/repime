@@ -211,6 +211,17 @@ mixin _$CtrDetalhesVaga on _CtrDetalhesVagaBase, Store {
   }
 
   @override
+  void tapInMap() {
+    final _$actionInfo = _$_CtrDetalhesVagaBaseActionController.startAction(
+        name: '_CtrDetalhesVagaBase.tapInMap');
+    try {
+      return super.tapInMap();
+    } finally {
+      _$_CtrDetalhesVagaBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 keyScaffold: ${keyScaffold},

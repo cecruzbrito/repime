@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+
 import 'package:repime/app/blocs/locador/db/locador_db.dart';
 import 'package:repime/app/blocs/vaga/db/vaga_db.dart';
 import 'package:repime/app/blocs/vaga/vaga.dart';
+import 'package:repime/app/pages/pages/detalhes_vaga_mapa_page/ctr/ctr_detalhes_vaga_mapa.dart';
+import 'package:repime/config/routes_app/routes_app.dart';
 
 import '../../../../blocs/locador/locador.dart';
 import '../../../../global_widgets/snack_bar_app/snack_bar_app.dart';
+
 part 'ctr_detalhes_vaga.g.dart';
 
 class CtrDetalhesVaga = _CtrDetalhesVagaBase with _$CtrDetalhesVaga;
@@ -19,7 +23,10 @@ abstract class _CtrDetalhesVagaBase with Store {
   Vaga? vaga;
 
   @action
-  void setVaga(Vaga value) => vaga = value;
+  void setVaga(Vaga value) {
+    onChangeFotos(0);
+    vaga = value;
+  }
 
   @observable
   int indexFoto = 0;
@@ -79,4 +86,12 @@ abstract class _CtrDetalhesVagaBase with Store {
 
   @action
   void tapInVoltar() => Modular.to.pop();
+
+  @action
+  void tapInMap() {
+    if (loading || loadingLocador) return;
+    final ctrDetalhesVagaMap = Modular.get<CtrDetalhesVagaMapa>();
+    ctrDetalhesVagaMap.setVaga(vaga!);
+    Modular.to.pushNamed(RouteApp.detalhesVagaMapa.name);
+  }
 }

@@ -23,6 +23,7 @@ class _PerfilLocadorPageState extends State<PerfilLocadorPage> {
   @override
   void initState() {
     super.initState();
+    print(Modular.get<MainController>().locadorAtual.contato);
     ctr.setContato(Modular.get<MainController>().locadorAtual.contato);
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:repime/app/blocs/residencia/residencia.dart';
 import 'package:repime/app/pages/controller/main_controller.dart';
+import 'package:repime/app/pages/pages/detalhes_vaga_mapa_page/ctr/ctr_detalhes_vaga_mapa.dart';
 import 'package:repime/config/routes_app/routes_app.dart';
 
 import '../app/pages/pages/detalhes_vaga_page/ctr/ctr_detalhes_vaga.dart';
@@ -16,6 +17,7 @@ class AppModule extends Module {
         RouteApp.detalhesVaga.childRoute,
         RouteApp.perfilLocador.childRoute,
         RouteApp.loginLocador.childRoute,
+        RouteApp.detalhesVagaMapa.childRoute,
       ];
 
   @override
@@ -23,5 +25,6 @@ class AppModule extends Module {
         Bind.singleton((i) => MainController()),
         Bind.singleton((i) => CtrDetalhesVaga()),
         Bind.singleton((i) => PerfilLocadorCtr()),
+        Bind.singleton((i) => CtrDetalhesVagaMapa()),
       ];
 }

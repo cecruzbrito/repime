@@ -5,6 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:skeletons/skeletons.dart';
 
 import '../ctr/ctr_detalhes_vaga.dart';
+import 'botao_map.dart';
 import 'botao_voltar.dart';
 import 'controller_foto.dart';
 
@@ -76,7 +77,13 @@ class Fotos extends StatelessWidget {
           }),
           Container(
               margin: EdgeInsets.only(top: size.height * .03, left: size.width * .05),
-              child: BotaoVoltar(ctr: ctr))
+              child: BotaoVoltar(ctr: ctr)),
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+                margin: EdgeInsets.only(top: size.height * .03, right: size.width * .05),
+                child: BotaoMapa(ctr: ctr)),
+          ),
         ],
       ),
     );

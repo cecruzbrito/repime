@@ -13,6 +13,9 @@ dependencies:
   easy_refresh: ^3.0.5
   flutter_mobx: ^2.0.6+5
   flutter_modular: ^5.0.3
+  geocoding: ^2.0.5
+  google_maps_flutter: ^2.2.1
+  google_maps_routes: ^1.1.2
   image_picker: ^0.8.6
   mobx: ^2.1.3
   path_provider: ^2.0.11
@@ -41,6 +44,8 @@ flutter:
   assets:
     - assets/clown.png
     - assets/repime_logo.png
+    - assets/location.png
+    - assets/location_outlined.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

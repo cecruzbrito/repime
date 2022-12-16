@@ -79,7 +79,7 @@ class LocadorDB extends Locador {
 
   toJson() => {
         'id': id,
-        'contato': 'contato',
+        'contato': contato,
         'nome': nome,
         'foto': foto,
         'senha': senha,

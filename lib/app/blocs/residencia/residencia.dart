@@ -14,4 +14,6 @@ class Residencia {
       required this.id,
       required this.tipo,
       required this.endereco});
+
+  String get toNameEndereco => "${endereco.endereco}, ${cidade.nome}, ${cidade.pais}";
 }
