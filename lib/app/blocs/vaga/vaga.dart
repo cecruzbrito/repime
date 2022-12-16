@@ -33,7 +33,7 @@ class Vaga {
       case 1:
         return "Ontem";
       default:
-        return "${d.inDays} atrás";
+        return "${d.inDays} dias atrás";
     }
   }
 }
