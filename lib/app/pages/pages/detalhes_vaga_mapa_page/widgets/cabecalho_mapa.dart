@@ -25,7 +25,10 @@ class CabecalhoMapa extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  decoration: const BoxDecoration(color: Colors.black, shape: BoxShape.circle),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.black, width: size.height * .002)),
                   height: size.height * .012,
                   width: size.height * .012,
                 ),
