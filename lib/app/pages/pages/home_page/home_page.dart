@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:repime/app/global_widgets/loading_app/loading_app.dart';
 import 'package:repime/app/pages/pages/home_page/ctr/ctr_home_page.dart';
+import 'package:repime/app/pages/pages/home_page/widgtes/animations/animation_cabecalho.dart';
 import 'package:repime/app/pages/pages/home_page/widgtes/vaga/vaga_card.dart';
 
 import 'widgtes/cabecalho.dart';
@@ -16,6 +17,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late final ctrAnimFiltros = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
+  late final ctrAnimTitle = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200));
+
   var ctr = CtrHomePage();
 
   @override
@@ -25,6 +28,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   firstRequest() async {
+    ctrAnimTitle.forward();
+
     await ctr.getVagas();
     await ctrAnimFiltros.forward();
   }
@@ -33,6 +38,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void dispose() {
     super.dispose();
     ctrAnimFiltros.dispose();
+    ctrAnimTitle.dispose();
   }
 
   @override
@@ -44,14 +50,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         padding: EdgeInsets.symmetric(horizontal: size.width * .05),
         child: Observer(builder: (_) {
           if (ctr.loading) {
-            return SizedBox(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Cabecalho(ctr: ctr),
-                  const Expanded(child: LoadingApp()),
-                ],
-              ),
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Cabecalho(ctr: ctr, ctrAnim: ctrAnimTitle),
+                const Expanded(child: LoadingApp()),
+              ],
             );
           }
           return RefreshIndicator(
@@ -60,7 +64,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Cabecalho(ctr: ctr),
+                  Cabecalho(
+                    ctr: ctr,
+                    ctrAnim: ctrAnimTitle,
+                  ),
                   Filtros(ctr: ctr, ctrAnim: ctrAnimFiltros),
                   SizedBox(height: size.height * .03),
                   Observer(builder: (_) {

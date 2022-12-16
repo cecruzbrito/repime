@@ -4,6 +4,7 @@ import 'package:repime/app/global_widgets/button_back_app/button_back_app.dart';
 import 'package:repime/app/global_widgets/button_text_app/button_text_app.dart';
 import 'package:repime/app/global_widgets/loading_app/loading_app.dart';
 import 'package:repime/app/pages/pages/login_page/ctr/ctr_login_page.dart';
+import 'package:repime/app/pages/pages/login_page/widgets/animations/animation_opacity_login.dart';
 import 'package:repime/app/pages/pages/login_page/widgets/dados_login.dart';
 
 import 'widgets/cabecalho.dart';
@@ -15,8 +16,22 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   final ctr = CtrLoginPage();
+  late final AnimationController ctrAnimation =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 1300));
+
+  @override
+  void initState() {
+    super.initState();
+    ctrAnimation.forward();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    ctrAnimation.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +55,13 @@ class _LoginPageState extends State<LoginPage> {
                   Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: [const Cabecalho(), DadosLogin(ctr: ctr)],
+                      children: [
+                        AnimationOpacityLogin(
+                            ctrAnimation: ctrAnimation,
+                            interval: const Interval(0, .4),
+                            child: const Cabecalho()),
+                        DadosLogin(ctr: ctr, ctrAnimation: ctrAnimation)
+                      ],
                     ),
                   ),
                   Align(
