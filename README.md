@@ -4,14 +4,14 @@
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/darlosss/repime">
 
   <a href="https://github.com/darlosss/repime/releases/tag/RepiMe">
-    <img alt="Application Status" src="https://img.shields.io/badge/Status-running-b6fe03">
+    <img alt="Application Status" src="https://img.shields.io/badge/app status-off-f23838">
   </a>
 
   <a href="https://github.com/darlosss/repime/commits/main">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/darlosss/repime">
   </a>
   <a href="https://www.heroku.com/">
-  <img alt="Host database" src="https://img.shields.io/badge/Database__Host-Heroku-red">
+  <img alt="Host database" src="https://img.shields.io/badge/database host-Heroku-red">
   </a>
 
 <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
@@ -49,12 +49,14 @@ Conforme as atividades da disciplina de Administração e Gerência de Redes da 
 
 As orientações estão divididas nos seguintes tópicos:
 
-- [Funcionalidades](#funcionalidades-gear)
-- [Banco de dados](#banco-de-dados-chair-game_die)
-- [Pré-requisitos e configuração](#pré-requisitos-e-configuração-hammer_and_wrench)
-- [Layout](#layout-art)
-- [Tecnologias](#tecnologias-technologist)
-- [Contribuidores](#contribuidores)
+- [RepiMe](#repime)
+  - [Sobre](#sobre)
+  - [Funcionalidades :gear:](#funcionalidades-gear)
+  - [Banco de dados :chair: :game\_die:](#banco-de-dados-chair-game_die)
+  - [Pré-requisitos e configuração :hammer\_and\_wrench:](#pré-requisitos-e-configuração-hammer_and_wrench)
+  - [Layout :art:](#layout-art)
+  - [Tecnologias :technologist:](#tecnologias-technologist)
+  - [Contribuidores](#contribuidores)
 
 ---
 ## Funcionalidades :gear:
